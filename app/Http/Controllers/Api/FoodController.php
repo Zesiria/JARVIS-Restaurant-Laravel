@@ -43,9 +43,10 @@ class FoodController extends Controller
      * @param  \App\Models\Food  $food
      * @return \Illuminate\Http\Response
      */
-    public function show(Food $food)
+    public function show(int $id)
     {
-        //
+        $food = Food::find($id);
+        return $food;
     }
 
     /**
@@ -55,9 +56,17 @@ class FoodController extends Controller
      * @param  \App\Models\Food  $food
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Food $food)
+    public function update(Request $request, int $id)
     {
-        //
+        $food = Food::find($id);
+        if($request->has('name'))
+            $food->name = $request->input('name');
+        if($request->has('type'))
+            $food->type = $request->input('type');
+        if($request->has('quantity'))
+            $food->quantity = (int)$request->input('quantity');
+        $food->save();
+        return $food;
     }
 
     /**
