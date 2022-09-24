@@ -1,0 +1,170 @@
+[
+  {
+    "name": "หมูนุ่ม",
+    "type": "meat",
+    "quantity": 26,
+    "img_path": null
+  },
+  {
+    "name": "หมููชาบู",
+    "type": "meat",
+    "quantity": 2,
+    "img_path": null
+  },
+  {
+    "name": "เนื้อวัว",
+    "type": "meat",
+    "quantity": 9,
+    "img_path": null
+  },
+  {
+    "name": "เนื้อไก่",
+    "type": "meat",
+    "quantity": 25,
+    "img_path": null
+  },
+  {
+    "name": "หมึกกรอบ",
+    "type": "meat",
+    "quantity": 14,
+    "img_path": null
+  },
+  {
+    "name": "แมงกะพรุน",
+    "type": "meat",
+    "quantity": 30,
+    "img_path": null
+  },
+  {
+    "name": "ลูกชิ้นกุ้ง",
+    "type": "meat",
+    "quantity": 23,
+    "img_path": null
+  },
+  {
+    "name": "เต้าหู้ปลา",
+    "type": "meat",
+    "quantity": 9,
+    "img_path": null
+  },
+  {
+    "name": "เส้นปลา",
+    "type": "meat",
+    "quantity": 1,
+    "img_path": null
+  },
+  {
+    "name": "เกี๊ยวกุ้งชีส",
+    "type": "meat",
+    "quantity": 30,
+    "img_path": null
+  },
+  {
+    "name": "เนื้อ Australia",
+    "type": "meat",
+    "quantity": 7,
+    "img_path": null
+  },
+  {
+    "name": "ไข่ไก่",
+    "type": "meat",
+    "quantity": 16,
+    "img_path": null
+  },
+  {
+    "name": "เนื้อ US",
+    "type": "meat",
+    "quantity": 10,
+    "img_path": null
+  },
+  {
+    "name": "หอยแมลงภู่นิวซีแลนด์",
+    "type": "meat",
+    "quantity": 0,
+    "img_path": null
+  },
+  {
+    "name": "กุ้งสด",
+    "type": "meat",
+    "quantity": 26,
+    "img_path": null
+  },
+  {
+    "name": "ปลาหมึกสด",
+    "type": "meat",
+    "quantity": 9,
+    "img_path": null
+  },
+  {
+    "name": "เนื้อปลาสด",
+    "type": "meat",
+    "quantity": 5,
+    "img_path": null
+  },
+  {
+    "name": "วุ้นเส้น",
+    "type": "vegetable",
+    "quantity": 2,
+    "img_path": null
+  },
+  {
+    "name": "เห็ดฟาง",
+    "type": "vegetable",
+    "quantity": 26,
+    "img_path": null
+  },
+  {
+    "name": "ข้าวโพด",
+    "type": "vegetable",
+    "quantity": 2,
+    "img_path": null
+  },
+  {
+    "name": "ฟักทอง",
+    "type": "vegetable",
+    "quantity": 17,
+    "img_path": null
+  },
+  {
+    "name": "สาหร่ายวากาเมะ",
+    "type": "vegetable",
+    "quantity": 18,
+    "img_path": null
+  },
+  {
+    "name": "ผักกาดขาว",
+    "type": "vegetable",
+    "quantity": 24,
+    "img_path": null
+  },
+  {
+    "name": "กวางตุ้ง",
+    "type": "vegetable",
+    "quantity": 16,
+    "img_path": null
+  },
+  {
+    "name": "ผักบุ้ง",
+    "type": "vegetable",
+    "quantity": 8,
+    "img_path": null
+  },
+  {
+    "name": "ขนมจีบ",
+    "type": "appetizer",
+    "quantity": 21,
+    "img_path": null
+  },
+  {
+    "name": "ซาลาเปา",
+    "type": "appetizer",
+    "quantity": 29,
+    "img_path": null
+  },
+  {
+    "name": "ปอเปี๊ยทอด",
+    "type": "appetizer",
+    "quantity": 7,
+    "img_path": null
+  }
+]

@@ -15,19 +15,26 @@ class FoodController extends Controller
      */
     public function index()
     {
-        $foods = Food::get();
-        return $foods;
+        $food = Food::get();
+        return $food;
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Food
      */
     public function store(Request $request)
     {
-        //
+        $food = new Food();
+        $food->name = $request->input('name');
+        $food->type = $request->input('type');
+        $food->quantity = (int)$request->input('quantity');
+        $food->save();
+
+        return $food;
+
     }
 
     /**
