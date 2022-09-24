@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('/foods', \App\Http\Controllers\Api\FoodController::class);
+Route::get('foods/{id}', [\App\Http\Controllers\Api\FoodController::class, 'show']);
