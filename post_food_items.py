@@ -6,5 +6,5 @@ with open('database/json/food.json', 'r', encoding="utf-8") as file:
 
 for food in food_list:
     print(food)
-    response = requests.post('http://localhost/api/food', json=food)
+    response = requests.post('http://localhost/api/foods', json=food)
     print(response.status_code)
