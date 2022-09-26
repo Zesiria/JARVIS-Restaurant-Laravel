@@ -65,6 +65,8 @@ class FoodController extends Controller
             $food->type = $request->input('type');
         if($request->has('quantity'))
             $food->quantity = (int)$request->input('quantity');
+        if($request->has('price'))
+            $food->quantity = (double)$request->input('price');
         $food->save();
         return $food;
     }
