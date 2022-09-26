@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
+            $table->double('price')->default(0);
             $table->integer('quantity');
             $table->string('img_path')->nullable()->default(null);
             $table->timestamps();
