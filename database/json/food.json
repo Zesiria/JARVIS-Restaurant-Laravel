@@ -1,170 +1,282 @@
 [
   {
+    "id": 1,
     "name": "หมูนุ่ม",
     "type": "เนื้อสัตว์",
+    "price": 0,
     "quantity": 26,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:08",
+    "updated_at": "2022-09-26 10:09:08"
   },
   {
+    "id": 2,
     "name": "หมููชาบู",
     "type": "เนื้อสัตว์",
+    "price": 0,
     "quantity": 2,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:08",
+    "updated_at": "2022-09-26 10:09:08"
   },
   {
+    "id": 3,
     "name": "เนื้อวัว",
     "type": "เนื้อสัตว์",
+    "price": 0,
     "quantity": 9,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:08",
+    "updated_at": "2022-09-26 10:09:08"
   },
   {
+    "id": 4,
     "name": "เนื้อไก่",
     "type": "เนื้อสัตว์",
+    "price": 0,
     "quantity": 25,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:08",
+    "updated_at": "2022-09-26 10:09:08"
   },
   {
+    "id": 5,
     "name": "หมึกกรอบ",
     "type": "เนื้อสัตว์",
+    "price": 0,
     "quantity": 14,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:09",
+    "updated_at": "2022-09-26 10:09:09"
   },
   {
+    "id": 6,
     "name": "แมงกะพรุน",
     "type": "เนื้อสัตว์",
+    "price": 0,
     "quantity": 30,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:09",
+    "updated_at": "2022-09-26 10:09:09"
   },
   {
+    "id": 7,
     "name": "ลูกชิ้นกุ้ง",
     "type": "เนื้อสัตว์",
+    "price": 0,
     "quantity": 23,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:09",
+    "updated_at": "2022-09-26 10:09:09"
   },
   {
+    "id": 8,
     "name": "เต้าหู้ปลา",
     "type": "เนื้อสัตว์",
+    "price": 0,
     "quantity": 9,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:09",
+    "updated_at": "2022-09-26 10:09:09"
   },
   {
+    "id": 9,
     "name": "เส้นปลา",
     "type": "เนื้อสัตว์",
+    "price": 0,
     "quantity": 1,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:09",
+    "updated_at": "2022-09-26 10:09:09"
   },
   {
+    "id": 10,
     "name": "เกี๊ยวกุ้งชีส",
     "type": "เนื้อสัตว์",
+    "price": 0,
     "quantity": 30,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:09",
+    "updated_at": "2022-09-26 10:09:09"
   },
   {
+    "id": 11,
     "name": "เนื้อ Australia",
     "type": "เนื้อสัตว์",
+    "price": 0,
     "quantity": 7,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:09",
+    "updated_at": "2022-09-26 10:09:09"
   },
   {
+    "id": 12,
     "name": "ไข่ไก่",
     "type": "เนื้อสัตว์",
+    "price": 0,
     "quantity": 16,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:09",
+    "updated_at": "2022-09-26 10:09:09"
   },
   {
+    "id": 13,
     "name": "เนื้อ US",
     "type": "เนื้อสัตว์",
+    "price": 0,
     "quantity": 10,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:10",
+    "updated_at": "2022-09-26 10:09:10"
   },
   {
+    "id": 14,
     "name": "หอยแมลงภู่นิวซีแลนด์",
     "type": "เนื้อสัตว์",
+    "price": 0,
     "quantity": 0,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:11",
+    "updated_at": "2022-09-26 10:09:11"
   },
   {
+    "id": 15,
     "name": "กุ้งสด",
     "type": "เนื้อสัตว์",
+    "price": 0,
     "quantity": 26,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:11",
+    "updated_at": "2022-09-26 10:09:11"
   },
   {
+    "id": 16,
     "name": "ปลาหมึกสด",
     "type": "เนื้อสัตว์",
+    "price": 0,
     "quantity": 9,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:11",
+    "updated_at": "2022-09-26 10:09:11"
   },
   {
+    "id": 17,
     "name": "เนื้อปลาสด",
     "type": "เนื้อสัตว์",
+    "price": 0,
     "quantity": 5,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:11",
+    "updated_at": "2022-09-26 10:09:11"
   },
   {
+    "id": 18,
     "name": "วุ้นเส้น",
     "type": "ผัก",
+    "price": 0,
     "quantity": 2,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:11",
+    "updated_at": "2022-09-26 10:09:11"
   },
   {
+    "id": 19,
     "name": "เห็ดฟาง",
     "type": "ผัก",
+    "price": 0,
     "quantity": 26,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:11",
+    "updated_at": "2022-09-26 10:09:11"
   },
   {
+    "id": 20,
     "name": "ข้าวโพด",
     "type": "ผัก",
+    "price": 0,
     "quantity": 2,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:11",
+    "updated_at": "2022-09-26 10:09:11"
   },
   {
+    "id": 21,
     "name": "ฟักทอง",
     "type": "ผัก",
+    "price": 0,
     "quantity": 17,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:11",
+    "updated_at": "2022-09-26 10:09:11"
   },
   {
+    "id": 22,
     "name": "สาหร่ายวากาเมะ",
     "type": "ผัก",
+    "price": 0,
     "quantity": 18,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:12",
+    "updated_at": "2022-09-26 10:09:12"
   },
   {
+    "id": 23,
     "name": "ผักกาดขาว",
     "type": "ผัก",
+    "price": 0,
     "quantity": 24,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:12",
+    "updated_at": "2022-09-26 10:09:12"
   },
   {
+    "id": 24,
     "name": "กวางตุ้ง",
     "type": "ผัก",
+    "price": 0,
     "quantity": 16,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:12",
+    "updated_at": "2022-09-26 10:09:12"
   },
   {
+    "id": 25,
     "name": "ผักบุ้ง",
     "type": "ผัก",
+    "price": 0,
     "quantity": 8,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:12",
+    "updated_at": "2022-09-26 10:09:12"
   },
   {
+    "id": 26,
     "name": "ขนมจีบ",
     "type": "ของทานเล่น",
+    "price": 0,
     "quantity": 21,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:12",
+    "updated_at": "2022-09-26 10:09:12"
   },
   {
+    "id": 27,
     "name": "ซาลาเปา",
     "type": "ของทานเล่น",
+    "price": 0,
     "quantity": 29,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:12",
+    "updated_at": "2022-09-26 10:09:12"
   },
   {
+    "id": 28,
     "name": "ปอเปี๊ยทอด",
     "type": "ของทานเล่น",
+    "price": 0,
     "quantity": 7,
-    "img_path": null
+    "img_path": null,
+    "created_at": "2022-09-26 10:09:12",
+    "updated_at": "2022-09-26 10:09:12"
   }
 ]

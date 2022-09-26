@@ -8,6 +8,6 @@ ___
 # วิธีรัน (post json object)
 ```angular2html
 $ sail up -d
-$ sail artisan migrate
-$ python3 post_food_items.py
+$ sail artisan migrate:fresh
+$ python3 seed_data.py
 ```
