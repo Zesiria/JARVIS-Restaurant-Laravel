@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Customer;
 use App\Models\FoodOrder;
-use App\Models\Order;
-use App\Models\Table;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class FoodOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,49 +15,46 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
-        return $orders;
+        $foodOrders = FoodOrder::all();
+        return $foodOrders;
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return string
+     * @return FoodOrder
      */
     public function store(Request $request)
     {
-        $customer = Customer::find($request->input('customer_id'));
-        if(!$customer)
-            return "can't find customer id " . (string)$request->input('customer_id');
-
-        $order = new Order();
-        $order->customer_id = $request->input('customer_id');
-        $order->save();
-        return $order;
+        $foodOrder = new FoodOrder();
+        $foodOrder->order_id = $request->input('order_id');
+        $foodOrder->food_id = $request->input('food_id');
+        $foodOrder->quantity = (int)$request->input('quantity');
+        $foodOrder->save();
+        return $foodOrder;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Order  $order
-     * @return string
+     * @param  \App\Models\FoodOrder  $foodOrder
+     * @return \Illuminate\Http\Response
      */
     public function show(int $id)
     {
-        $order = Order::find($id);
-//        $order_list = FoodOrder::get()->where('order_id', $order->id);
-        return $order;
+        $foodOrder = FoodOrder::find($id);
+        return $foodOrder;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\FoodOrder  $foodOrder
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, FoodOrder $foodOrder)
     {
         //
     }
@@ -68,10 +62,10 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\FoodOrder  $foodOrder
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(FoodOrder $foodOrder)
     {
         //
     }

@@ -12,4 +12,8 @@ class Customer extends Model
     public function table(){
         return $this->belongsTo(Table::class);
     }
+
+    public function order(){
+        return $this->hasMany(Order::class);
+    }
 }

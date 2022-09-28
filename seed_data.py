@@ -1,26 +1,56 @@
 import requests
 import json
+import colorama
+from colorama import Fore
 
-with open('database/json/food.json', 'r', encoding="utf-8") as file:
-    food_list = json.load(file)
+def print_status(item, title, response):
+    print(Fore.WHITE + title + str(item['id']),end=" ")
+    if response.status_code == 201:
+        print(Fore.GREEN + "success")
+    else:
+        print(Fore.RED + response.status_code)
 
-for food in food_list:
-    print(food)
-    response = requests.post('http://localhost/api/foods', json=food)
-    print(response.status_code)
+def open_file(path):
+    with open(path, 'r', encoding="utf-8") as file:
+        items = json.load(file)
+    return items
 
-with open('database/json/customers.json', 'r', encoding="utf-8") as file:
-    customer_list = json.load(file)
+def seed(items, http, title):
+    title = title + " : "
+    for item in items:
+        response = requests.post(http, json=item)
+        print_status(item, title, response)
 
-for customer in customer_list:
-    print(customer)
-    response = requests.post('http://localhost/api/customers', json=customer)
-    print(response.status_code)
+ls = [
+{
+    "title" : "Food",
+    "path" : 'database/json/food.json',
+    "http" : 'http://localhost/api/foods'
+},
+{
+    "title" : "Customer",
+    "path" : 'database/json/customers.json',
+    "http" : 'http://localhost/api/customers'
+},
+{
+    "title" : "Table",
+    "path" : 'database/json/tables.json',
+    "http" : 'http://localhost/api/tables'
+},
+{
+    "title" : "Order",
+    "path" : 'database/json/orders.json',
+    "http" : 'http://localhost/api/orders'
+},
+{
+    "title" : "Food Order",
+    "path" : 'database/json/food_orders.json',
+    "http" : 'http://localhost/api/food-orders'
+}
+]
 
-with open('database/json/tables.json', 'r', encoding="utf-8") as file:
-    table_list = json.load(file)
 
-for table in table_list:
-    print(table)
-    response = requests.post('http://localhost/api/tales', json=table)
-    print(response.status_code)
+for item in ls:
+    items = open_file(item['path'])
+    seed(items, item['http'], item['title'])
+
