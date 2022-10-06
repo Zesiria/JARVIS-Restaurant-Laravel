@@ -20,3 +20,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('/foods', \App\Http\Controllers\Api\FoodController::class);
 Route::get('foods/{id}', [\App\Http\Controllers\Api\FoodController::class, 'show']);
+
+Route::apiResource('/customers', \App\Http\Controllers\Api\CustomerController::class);
+Route::get('customers/{id}', [\App\Http\Controllers\Api\CustomerController::class, 'show']);
+
+Route::apiResource('/tables', \App\Http\Controllers\Api\TableController::class);
+Route::get('tables/{id}', [\App\Http\Controllers\Api\TableController::class, 'show']);
+
+Route::apiResource('/orders', \App\Http\Controllers\Api\OrderController::class);
+Route::get('orders/{id}', [\App\Http\Controllers\Api\OrderController::class, 'show']);
+
+Route::apiResource('/food-orders', \App\Http\Controllers\Api\FoodOrderController::class);
+Route::get('food-orders/{id}', [\App\Http\Controllers\Api\FoodOrderController::class, 'show']);
