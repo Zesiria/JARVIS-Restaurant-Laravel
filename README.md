@@ -11,3 +11,10 @@ $ sail up -d
 $ sail artisan migrate:fresh
 $ python3 seed_data.py
 ```
+
+---
+
+# Adding users (temporary)
+```angular2html
+$ sail artisan db:seed --class=UserSeeder
+```
