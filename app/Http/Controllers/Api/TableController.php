@@ -29,7 +29,7 @@ class TableController extends Controller
     public function store(Request $request)
     {
         $table = new Table();
-        if($request->has('customer_id') and $request->input('customer_id') != null) {
+        if($request->has('customer_id')) {
             $table->customer_id = $request->input('customer_id');
             $table->status = 0;
         }
