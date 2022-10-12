@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CustomerController extends Controller
 {
@@ -23,15 +24,25 @@ class CustomerController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return Customer
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $customer = new Customer();
         if($request->has('number_people'))
             $customer->number_people = (int)$request->input('number_people');
-        $customer->save();
-        return $customer;
+        $customer->code = fake()->lexify("?????");
+        if($customer->save()){
+            return response()->json([
+                'success' => true,
+                'message' => 'Customer saved successfully with id ' . $customer->id,
+                'customer_id' => $customer->id
+            ], Response::HTTP_CREATED);
+        }
+        return response()->json([
+            'success' => false,
+            'message' => 'Customer saved failed'
+        ], Response::HTTP_BAD_REQUEST);
     }
 
     /**
