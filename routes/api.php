@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\AuthCustomerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -42,4 +43,14 @@ Route::group([
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
+});
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth/customer'
+], function ($router) {
+    Route::post('login', [AuthCustomerController::class, 'login']);
+    Route::post('logout', [AuthCustomerController::class, 'logout']);
+    Route::post('refresh', [AuthCustomerController::class, 'refresh']);
+    Route::post('me', [AuthCustomerController::class, 'me']);
 });
