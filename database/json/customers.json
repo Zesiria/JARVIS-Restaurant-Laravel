@@ -2,21 +2,21 @@
   {
     "id": 1,
     "number_people": 5,
-    "code" : "12345",
+    "code" : "123456",
     "created_at": "2022-09-26 09:49:18",
     "updated_at": "2022-09-26 09:49:18"
   },
   {
     "id": 2,
     "number_people": 3,
-    "code" : "22345",
+    "code" : "223456",
     "created_at": "2022-09-26 09:49:30",
     "updated_at": "2022-09-26 09:49:30"
   },
   {
     "id": 3,
     "number_people": 6,
-    "code" : "32345",
+    "code" : "323456",
     "created_at": "2022-09-26 09:49:35",
     "updated_at": "2022-09-26 09:49:35"
   }
