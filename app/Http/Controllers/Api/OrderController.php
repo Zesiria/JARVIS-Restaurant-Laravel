@@ -9,6 +9,7 @@ use App\Models\FoodOrder;
 use App\Models\Order;
 use App\Models\Table;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class OrderController extends Controller
 {
@@ -38,7 +39,17 @@ class OrderController extends Controller
         $order = new Order();
         $order->customer_id = $request->input('customer_id');
         $order->save();
-        return $order;
+        if($customer->save()){
+            return response()->json([
+                'success' => true,
+                'message' => 'Order saved successfully with id ' . $order->id,
+                'order_id' => $order->id
+            ], Response::HTTP_CREATED);
+        }
+        return response()->json([
+            'success' => false,
+            'message' => 'Order saved failed'
+        ], Response::HTTP_BAD_REQUEST);
     }
 
     /**
