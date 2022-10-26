@@ -43,7 +43,7 @@ class OrderController extends Controller
                 $foodOrder_new = new FoodOrder();
                 $foodOrder_new->order_id = $order->id;
                 $foodOrder_new->food_id = $foodOrder['food_id'];
-                $foodOrder_new->quantity = (int)$foodOrder['quantity'];
+                $foodOrder_new->quantity = (int)$foodOrder['orderQuantity'];
                 $foodOrder_new->save();
             }
             return response()->json([
