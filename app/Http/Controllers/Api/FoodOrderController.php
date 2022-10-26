@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CustomerOrder;
 use App\Models\FoodOrder;
 use App\Models\Order;
+use App\Models\Table;
 use Illuminate\Http\Request;
 
 class FoodOrderController extends Controller
@@ -37,6 +38,10 @@ class FoodOrderController extends Controller
 
         $customer_order = new CustomerOrder();
         $customer_order->customer_id = Order::find($foodOrder->order_id)->customer_id;
+
+        $table = Table::where("customer_id", $customer_order->customer_id)->get()->first();
+        if($table)
+            $customer_order->table_id = $table->id;
         $customer_order->order_id = $foodOrder->order_id;
         $customer_order->food_id = $foodOrder->food_id;
         $customer_order->save();
