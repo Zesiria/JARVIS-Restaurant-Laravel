@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\CustomerOrder;
 use App\Models\FoodOrder;
 use App\Models\Order;
 use App\Models\Table;
@@ -74,5 +75,10 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public function order_from(int $id){
+        $customer_order = CustomerOrder::all()->where("customer_id", $id);
+        return $customer_order;
     }
 }

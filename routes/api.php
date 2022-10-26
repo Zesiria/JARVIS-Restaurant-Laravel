@@ -43,3 +43,5 @@ Route::group([
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
 });
+
+Route::get('order-from/{id}', [\App\Http\Controllers\Api\OrderController::class, 'order_from']);
