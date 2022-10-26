@@ -24,7 +24,7 @@ class TableController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return Table
+     * @return string
      */
     public function store(Request $request)
     {
@@ -33,8 +33,12 @@ class TableController extends Controller
             $table->customer_id = $request->input('customer_id');
             $table->status = 0;
         }
+        else
+            $table->customer_id = null;
         if($request->has('size'))
             $table->size = (int)$request->input('size');
+        else
+            return "Please insert table size";
         $table->save();
         return $table;
     }
@@ -54,22 +58,28 @@ class TableController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Table  $table
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Table $table
      * @return string
+     * @throws \Exception
      */
     public function update(Request $request, int $id)
     {
         $table = Table::find($id);
+        if(!$request->has('property') or !$request->has('number_people'))
+            throw new \Exception();
         if($request->input('property') == "check-in"){
             if(!$table->status)
                 return "Table is not available";
-            if(!$request->has('customer_id'))
-                return "Please insert customer";
-            if($table->size < Customer::find($request->input('customer_id'))->number_people)
+//            if(!$request->has('customer_id'))
+//                return "Please insert customer";
+            if($table->size < (int)$request->input('number_people'))
                 return "Number of customer are more than table size !!";
+            $customer = new Customer();
+            $customer->number_people = (int)$request->input('number_people');
+            $customer->save();
 
-            $table->customer_id = $request->input('customer_id');
+            $table->customer_id = $customer->id;
             $table->status = 0;
             $table->save();
             return $table;
