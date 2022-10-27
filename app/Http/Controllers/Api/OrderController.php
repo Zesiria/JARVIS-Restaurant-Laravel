@@ -110,12 +110,12 @@ class OrderController extends Controller
             ->where('created_at', '<=', now()->endOfDay());
         $arr = array();
         foreach ($orders as $order){
-            $arr[$order->id] = response()->json([
+            $arr[] = response()->json([
                 'order_id' => $order->id,
                'table_id' => Table::all()->where('customer_id', $order->customer_id)->first()->id,
                'quantity' => FoodOrder::all()->where('order_id', $order->id)->count(),
                 'date' => $order->created_at
-            ]);
+            ])->original;
         }
 
         return $arr;
