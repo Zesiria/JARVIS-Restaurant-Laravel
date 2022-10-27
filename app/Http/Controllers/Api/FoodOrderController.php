@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\CustomerOrder;
 use App\Models\FoodOrder;
+use App\Models\Order;
+use App\Models\Table;
 use Illuminate\Http\Request;
 
 class FoodOrderController extends Controller
@@ -32,6 +35,18 @@ class FoodOrderController extends Controller
         $foodOrder->food_id = $request->input('food_id');
         $foodOrder->quantity = (int)$request->input('quantity');
         $foodOrder->save();
+
+        $customer_order = new CustomerOrder();
+        $customer_order->customer_id = Order::find($foodOrder->order_id)->customer_id;
+
+        $table = Table::where("customer_id", $customer_order->customer_id)->get()->first();
+        if($table)
+            $customer_order->table_id = $table->id;
+        $customer_order->order_id = $foodOrder->order_id;
+        $customer_order->food_id = $foodOrder->food_id;
+        $customer_order->quantity = $foodOrder->quantity;
+        $customer_order->save();
+
         return $foodOrder;
     }
 

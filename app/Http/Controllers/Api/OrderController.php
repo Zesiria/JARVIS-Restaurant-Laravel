@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\CustomerOrder;
 use App\Models\FoodOrder;
 use App\Models\Order;
 use App\Models\Table;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Ramsey\Collection\Collection;
 
 class OrderController extends Controller
 {
@@ -38,13 +40,15 @@ class OrderController extends Controller
         $order = new Order();
         $order->customer_id = $request->input('customer_id');
         if($order->save()){
-            $foodOrders = ($request->input('foodOrders'));
-            foreach ($foodOrders as $foodOrder){
-                $foodOrder_new = new FoodOrder();
-                $foodOrder_new->order_id = $order->id;
-                $foodOrder_new->food_id = $foodOrder['food_id'];
-                $foodOrder_new->quantity = (int)$foodOrder['orderQuantity'];
-                $foodOrder_new->save();
+            if($request->has('foodOrders')){
+                $foodOrders = ($request->input('foodOrders'));
+                foreach ($foodOrders as $foodOrder){
+                    $foodOrder_new = new FoodOrder();
+                    $foodOrder_new->order_id = $order->id;
+                    $foodOrder_new->food_id = $foodOrder['food_id'];
+                    $foodOrder_new->quantity = (int)$foodOrder['orderQuantity'];
+                    $foodOrder_new->save();
+                }
             }
             return response()->json([
                 'success' => true,
@@ -92,5 +96,28 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public function order_from(int $id){
+        $customer_order = CustomerOrder::all()->where("customer_id", $id);
+        return $customer_order;
+    }
+
+    public function pending_order(): array
+    {
+        $orders = Order::all()->where('status', 'PENDING')
+            ->where('created_at', '>=', now()->startOfDay())
+            ->where('created_at', '<=', now()->endOfDay());
+        $arr = array();
+        foreach ($orders as $order){
+            $arr[] = response()->json([
+                'order_id' => $order->id,
+               'table_id' => Table::all()->where('customer_id', $order->customer_id)->first()->id,
+               'quantity' => FoodOrder::all()->where('order_id', $order->id)->count(),
+                'date' => $order->created_at
+            ])->original;
+        }
+
+        return $arr;
     }
 }
