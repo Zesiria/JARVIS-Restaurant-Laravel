@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Food;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class FoodController extends Controller
 {
@@ -23,7 +24,7 @@ class FoodController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return Food
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -31,9 +32,17 @@ class FoodController extends Controller
         $food->name = $request->input('name');
         $food->type = $request->input('type');
         $food->quantity = (int)$request->input('quantity');
-        $food->save();
-
-        return $food;
+        if($food->save()){
+            return response()->json([
+                'success' => true,
+                'message' => 'Food saved successfully with id ' . $food->id,
+                'food_id' => $food->id
+            ], Response::HTTP_CREATED);
+        }
+        return response()->json([
+            'success' => false,
+            'message' => 'Food saved failed'
+        ], Response::HTTP_BAD_REQUEST);
 
     }
 
