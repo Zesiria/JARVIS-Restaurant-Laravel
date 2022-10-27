@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\Customer::class);
             $table->foreignIdFor(\App\Models\Order::class);
             $table->foreignIdFor(\App\Models\Food::class);
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

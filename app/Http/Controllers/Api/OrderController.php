@@ -39,13 +39,15 @@ class OrderController extends Controller
         $order = new Order();
         $order->customer_id = $request->input('customer_id');
         if($order->save()){
-            $foodOrders = ($request->input('foodOrders'));
-            foreach ($foodOrders as $foodOrder){
-                $foodOrder_new = new FoodOrder();
-                $foodOrder_new->order_id = $order->id;
-                $foodOrder_new->food_id = $foodOrder['food_id'];
-                $foodOrder_new->quantity = (int)$foodOrder['orderQuantity'];
-                $foodOrder_new->save();
+            if($request->has('foodOrders')){
+                $foodOrders = ($request->input('foodOrders'));
+                foreach ($foodOrders as $foodOrder){
+                    $foodOrder_new = new FoodOrder();
+                    $foodOrder_new->order_id = $order->id;
+                    $foodOrder_new->food_id = $foodOrder['food_id'];
+                    $foodOrder_new->quantity = (int)$foodOrder['orderQuantity'];
+                    $foodOrder_new->save();
+                }
             }
             return response()->json([
                 'success' => true,

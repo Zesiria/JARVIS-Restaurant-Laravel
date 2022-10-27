@@ -44,6 +44,7 @@ class FoodOrderController extends Controller
             $customer_order->table_id = $table->id;
         $customer_order->order_id = $foodOrder->order_id;
         $customer_order->food_id = $foodOrder->food_id;
+        $customer_order->quantity = $foodOrder->quantity;
         $customer_order->save();
 
         return $foodOrder;
