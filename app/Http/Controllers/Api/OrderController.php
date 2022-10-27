@@ -66,13 +66,26 @@ class OrderController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Order  $order
-     * @return string
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(int $id)
     {
         $order = Order::find($id);
-//        $order_list = FoodOrder::get()->where('order_id', $order->id);
-        return $order;
+        $order_list = FoodOrder::get()->where('order_id', $order->id);
+        $arr = array();
+
+        foreach ($order_list as $item){
+            $arr[] = \response()->json([
+                'food_id' => $item->food_id,
+                'quantity' => $item->quantity
+            ])->original;
+        }
+        return \response()->json([
+            'order_id' => $order->id,
+            'customer' => $order->customer_id,
+            'status' => $order->status,
+            'food_list' => $arr
+        ]);
     }
 
     /**
