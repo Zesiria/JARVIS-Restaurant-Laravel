@@ -45,5 +45,5 @@ Route::group([
     Route::post('me', [AuthController::class, 'me']);
 });
 
-Route::get('order-from/{id}', [\App\Http\Controllers\Api\OrderController::class, 'order_from']);
-
+Route::get('/order-from/{id}', [\App\Http\Controllers\Api\OrderController::class, 'order_from']);
+Route::get('/orders-today',[\App\Http\Controllers\Api\OrderController::class, 'pending_order']);

@@ -66,8 +66,14 @@ class TableController extends Controller
     public function update(Request $request, int $id)
     {
         $table = Table::find($id);
-        if(!$request->has('property') or !$request->has('number_people'))
-            throw new \Exception();
+
+        if($request->input('property') == "check-out"){
+            $table->customer_id = null;
+            $table->status = 1;
+            $table->save();
+            return $table;
+        }
+
         if($request->input('property') == "check-in"){
             if(!$table->status)
                 return "Table is not available";
@@ -82,13 +88,6 @@ class TableController extends Controller
 
             $table->customer_id = $customer->id;
             $table->status = 0;
-            $table->save();
-            return $table;
-        }
-
-        if($request->input('property') == "check-out"){
-            $table->customer_id = null;
-            $table->status = 1;
             $table->save();
             return $table;
         }

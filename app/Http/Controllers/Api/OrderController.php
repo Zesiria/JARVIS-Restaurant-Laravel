@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\Table;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Ramsey\Collection\Collection;
 
 class OrderController extends Controller
 {
@@ -100,5 +101,11 @@ class OrderController extends Controller
     public function order_from(int $id){
         $customer_order = CustomerOrder::all()->where("customer_id", $id);
         return $customer_order;
+    }
+
+    public function pending_order(): \Illuminate\Database\Eloquent\Collection
+    {
+        $orders = Order::all()->where('status', 'PENDING');
+        return $orders;
     }
 }
