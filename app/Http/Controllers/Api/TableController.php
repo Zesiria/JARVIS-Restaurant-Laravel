@@ -77,6 +77,7 @@ class TableController extends Controller
                 return "Number of customer are more than table size !!";
             $customer = new Customer();
             $customer->number_people = (int)$request->input('number_people');
+            $customer->code = fake()->lexify("??????");
             $customer->save();
 
             $table->customer_id = $customer->id;
