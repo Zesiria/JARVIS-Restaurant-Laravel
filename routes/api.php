@@ -45,5 +45,15 @@ Route::group([
     Route::post('me', [AuthController::class, 'me']);
 });
 
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth/customer'
+], function ($router) {
+    Route::post('login', [AuthCustomerController::class, 'login']);
+    Route::post('logout', [AuthCustomerController::class, 'logout']);
+    Route::post('refresh', [AuthCustomerController::class, 'refresh']);
+    Route::post('me', [AuthCustomerController::class, 'me']);
+});
+
 Route::get('/order-from/{id}', [\App\Http\Controllers\Api\OrderController::class, 'order_from']);
 Route::get('/orders-today',[\App\Http\Controllers\Api\OrderController::class, 'pending_order']);
