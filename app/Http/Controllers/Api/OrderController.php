@@ -103,9 +103,21 @@ class OrderController extends Controller
         return $customer_order;
     }
 
-    public function pending_order(): \Illuminate\Database\Eloquent\Collection
+    public function pending_order(): array
     {
-        $orders = Order::all()->where('status', 'PENDING');
-        return $orders;
+        $orders = Order::all()->where('status', 'PENDING')
+            ->where('created_at', '>=', now()->startOfDay())
+            ->where('created_at', '<=', now()->endOfDay());
+        $arr = array();
+        foreach ($orders as $order){
+            $arr[$order->id] = response()->json([
+                'order_id' => $order->id,
+               'table_id' => Table::all()->where('customer_id', $order->customer_id)->first()->id,
+               'quantity' => FoodOrder::all()->where('order_id', $order->id)->count(),
+                'date' => $order->created_at
+            ]);
+        }
+
+        return $arr;
     }
 }
