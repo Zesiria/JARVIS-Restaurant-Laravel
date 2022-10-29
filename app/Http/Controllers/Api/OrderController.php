@@ -112,8 +112,29 @@ class OrderController extends Controller
     }
 
     public function order_from(int $id){
-        $customer_order = CustomerOrder::all()->where("customer_id", $id);
-        return $customer_order;
+        $orders = Order::all()->where("customer_id", $id);
+        $ordersReturn = array();
+        foreach ($orders as $order){
+            $food_orders = FoodOrder::all()->where('order_id', $order->id);
+            $arr = array();
+            foreach ($food_orders as $item){
+                $arr[] = \response()->json([
+                    'food_id' => $item->food_id,
+                    'quantity' => $item->quantity
+                ])->original;
+            }
+            $ordersReturn[] = \response()->json([
+                'order_id' => $order->id,
+                'customer' => $order->customer_id,
+                'status' => $order->status,
+                'food_list' => $arr
+            ])->original;
+        }
+
+        return $ordersReturn;
+
+
+
     }
 
     public function pending_order(): array
