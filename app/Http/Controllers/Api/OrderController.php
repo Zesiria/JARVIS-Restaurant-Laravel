@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\CustomerOrder;
+use App\Models\Food;
 use App\Models\FoodOrder;
 use App\Models\Order;
 use App\Models\Table;
@@ -128,7 +129,7 @@ class OrderController extends Controller
             $arr = array();
             foreach ($food_orders as $item){
                 $arr[] = \response()->json([
-                    'food_id' => $item->food_id,
+                    'food' => Food::all()->where('id', $item->food_id),
                     'quantity' => $item->quantity
                 ])->original;
             }
