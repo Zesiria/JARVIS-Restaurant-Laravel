@@ -16,7 +16,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::all();
+        $customers = Customer::getAll();
         return $customers;
     }
 
@@ -53,7 +53,7 @@ class CustomerController extends Controller
      */
     public function show(int $id)
     {
-        $customer = Customer::find($id);
+        $customer = Customer::findCustomerById($id);
         return $customer;
     }
 
