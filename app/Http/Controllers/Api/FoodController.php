@@ -32,6 +32,10 @@ class FoodController extends Controller
         $food->name = $request->input('name');
         $food->type = $request->input('type');
         $food->quantity = (int)$request->input('quantity');
+        if($request->has('price'))
+            $food->price = (double)$request->input('price');
+        if($request->has('img_path'))
+            $food->img_path = $request->input('img_path');
         if($food->save()){
             return response()->json([
                 'success' => true,
@@ -76,6 +80,8 @@ class FoodController extends Controller
             $food->quantity = (int)$request->input('quantity');
         if($request->has('price'))
             $food->quantity = (double)$request->input('price');
+        if($request->has('img_path'))
+            $food->img_path = $request->input('img_path');
         $food->save();
         return $food;
     }
