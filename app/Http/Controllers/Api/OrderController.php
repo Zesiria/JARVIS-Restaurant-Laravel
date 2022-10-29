@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\CustomerOrder;
+use App\Models\Food;
 use App\Models\FoodOrder;
 use App\Models\Order;
 use App\Models\Table;
@@ -82,7 +83,8 @@ class OrderController extends Controller
         }
         return \response()->json([
             'order_id' => $order->id,
-            'customer' => $order->customer_id,
+            'customer_id' => $order->customer_id,
+            'table_id' => Table::all()->where('customer_id', $order->customer_id)->first()->id,
             'status' => $order->status,
             'food_list' => $arr
         ]);
@@ -95,9 +97,17 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, int $id)
     {
-        //
+        if($request->input('status') == 'accept'){
+            $order = Order::find($id);
+            $order->status = 'IN PROCESS';
+            $order->save();
+        }elseif($request->input('status' == 'serve')){
+            $order = Order::find($id);
+            $order->status = 'COMPLETED';
+            $order->save();
+        }
     }
 
     /**
@@ -112,8 +122,29 @@ class OrderController extends Controller
     }
 
     public function order_from(int $id){
-        $customer_order = CustomerOrder::all()->where("customer_id", $id);
-        return $customer_order;
+        $orders = Order::all()->where("customer_id", $id);
+        $ordersReturn = array();
+        foreach ($orders as $order){
+            $food_orders = FoodOrder::all()->where('order_id', $order->id);
+            $arr = array();
+            foreach ($food_orders as $item){
+                $arr[] = \response()->json([
+                    'food' => Food::all()->where('id', $item->food_id),
+                    'quantity' => $item->quantity
+                ])->original;
+            }
+            $ordersReturn[] = \response()->json([
+                'order_id' => $order->id,
+                'customer' => $order->customer_id,
+                'status' => $order->status,
+                'food_list' => $arr
+            ])->original;
+        }
+
+        return $ordersReturn;
+
+
+
     }
 
     public function pending_order(): array
