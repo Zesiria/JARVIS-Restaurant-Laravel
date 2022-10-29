@@ -59,4 +59,12 @@ class Customer extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public static function getAll(){
+        return Customer::all();
+    }
+
+    public static function findCustomerById($id){
+        return Customer::find($id);
+    }
 }

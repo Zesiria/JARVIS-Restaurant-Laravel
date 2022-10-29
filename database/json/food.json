@@ -5,7 +5,7 @@
     "type": "เนื้อสัตว์",
     "price": 0,
     "quantity": 26,
-    "img_path": null,
+    "img_path": "imgs/001.png",
     "created_at": "2022-09-26 10:09:08",
     "updated_at": "2022-09-26 10:09:08"
   },

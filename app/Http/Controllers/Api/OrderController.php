@@ -82,7 +82,8 @@ class OrderController extends Controller
         }
         return \response()->json([
             'order_id' => $order->id,
-            'customer' => $order->customer_id,
+            'customer_id' => $order->customer_id,
+            'table_id' => Table::all()->where('customer_id', $order->customer_id)->first()->id,
             'status' => $order->status,
             'food_list' => $arr
         ]);
@@ -95,9 +96,17 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, int $id)
     {
-        //
+        if($request->input('status') == 'accept'){
+            $order = Order::find($id);
+            $order->status = 'IN PROCESS';
+            $order->save();
+        }elseif($request->input('status' == 'serve')){
+            $order = Order::find($id);
+            $order->status = 'COMPLETED';
+            $order->save();
+        }
     }
 
     /**
