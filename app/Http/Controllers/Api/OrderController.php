@@ -149,7 +149,7 @@ class OrderController extends Controller
 
     public function pending_order(): array
     {
-        $orders = Order::all()->where('status', 'PENDING')
+        $orders = Order::all()
             ->where('created_at', '>=', now()->startOfDay())
             ->where('created_at', '<=', now()->endOfDay());
         $arr = array();
