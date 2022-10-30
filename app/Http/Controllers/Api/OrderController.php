@@ -149,15 +149,16 @@ class OrderController extends Controller
 
     public function pending_order(): array
     {
-        $orders = Order::all()->where('status', 'PENDING')
+        $orders = Order::all()
             ->where('created_at', '>=', now()->startOfDay())
             ->where('created_at', '<=', now()->endOfDay());
         $arr = array();
         foreach ($orders as $order){
             $arr[] = response()->json([
                 'order_id' => $order->id,
-               'table_id' => Table::all()->where('customer_id', $order->customer_id)->first()->id,
-               'quantity' => FoodOrder::all()->where('order_id', $order->id)->count(),
+                'table_id' => Table::all()->where('customer_id', $order->customer_id)->first()->id,
+                'quantity' => FoodOrder::all()->where('order_id', $order->id)->count(),
+                'status' => $order->status,
                 'date' => $order->created_at
             ])->original;
         }
