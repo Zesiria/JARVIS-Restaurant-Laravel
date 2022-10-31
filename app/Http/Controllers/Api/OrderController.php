@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\CustomerOrder;
+use App\Models\Food;
 use App\Models\FoodOrder;
 use App\Models\Order;
 use App\Models\Table;
@@ -102,7 +103,7 @@ class OrderController extends Controller
             $order = Order::find($id);
             $order->status = 'IN PROCESS';
             $order->save();
-        }elseif($request->input('status' == 'serve')){
+        }elseif($request->input('status') == 'serve'){
             $order = Order::find($id);
             $order->status = 'COMPLETED';
             $order->save();
@@ -128,7 +129,7 @@ class OrderController extends Controller
             $arr = array();
             foreach ($food_orders as $item){
                 $arr[] = \response()->json([
-                    'food_id' => $item->food_id,
+                    'food' => Food::all()->where('id', $item->food_id),
                     'quantity' => $item->quantity
                 ])->original;
             }
@@ -148,15 +149,16 @@ class OrderController extends Controller
 
     public function pending_order(): array
     {
-        $orders = Order::all()->where('status', 'PENDING')
+        $orders = Order::all()
             ->where('created_at', '>=', now()->startOfDay())
             ->where('created_at', '<=', now()->endOfDay());
         $arr = array();
         foreach ($orders as $order){
             $arr[] = response()->json([
                 'order_id' => $order->id,
-               'table_id' => Table::all()->where('customer_id', $order->customer_id)->first()->id,
-               'quantity' => FoodOrder::all()->where('order_id', $order->id)->count(),
+                'table_id' => Table::all()->where('customer_id', $order->customer_id)->first()->id,
+                'quantity' => FoodOrder::all()->where('order_id', $order->id)->count(),
+                'status' => $order->status,
                 'date' => $order->created_at
             ])->original;
         }

@@ -35,7 +35,7 @@ class FoodController extends Controller
         if($request->has('price'))
             $food->price = (double)$request->input('price');
         if($request->has('img_path'))
-            $food->img_path = $request->input('img_path');
+            $food->img_path = url("/storage/".$request->input('img_path'));
         if($food->save()){
             return response()->json([
                 'success' => true,
