@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Models\Table;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use PhpParser\Node\Expr\Array_;
 use Ramsey\Collection\Collection;
 
 class OrderController extends Controller
@@ -103,7 +104,7 @@ class OrderController extends Controller
             $order = Order::find($id);
             $order->status = 'IN PROCESS';
             $order->save();
-        }elseif($request->input('status' == 'serve')){
+        }elseif($request->input('status') == 'serve'){
             $order = Order::find($id);
             $order->status = 'COMPLETED';
             $order->save();
@@ -129,7 +130,7 @@ class OrderController extends Controller
             $arr = array();
             foreach ($food_orders as $item){
                 $arr[] = \response()->json([
-                    'food' => Food::all()->where('id', $item->food_id),
+                    'food' => Food::where('id', $item->food_id)->first(),
                     'quantity' => $item->quantity
                 ])->original;
             }
@@ -137,7 +138,8 @@ class OrderController extends Controller
                 'order_id' => $order->id,
                 'customer' => $order->customer_id,
                 'status' => $order->status,
-                'food_list' => $arr
+                'food_list' => $arr,
+                'order_created_at' => $order->created_at
             ])->original;
         }
 
@@ -149,15 +151,16 @@ class OrderController extends Controller
 
     public function pending_order(): array
     {
-        $orders = Order::all()->where('status', 'PENDING')
+        $orders = Order::all()
             ->where('created_at', '>=', now()->startOfDay())
             ->where('created_at', '<=', now()->endOfDay());
         $arr = array();
         foreach ($orders as $order){
             $arr[] = response()->json([
                 'order_id' => $order->id,
-               'table_id' => Table::all()->where('customer_id', $order->customer_id)->first()->id,
-               'quantity' => FoodOrder::all()->where('order_id', $order->id)->count(),
+                'table_id' => Table::all()->where('customer_id', $order->customer_id)->first()->id,
+                'quantity' => FoodOrder::all()->where('order_id', $order->id)->count(),
+                'status' => $order->status,
                 'date' => $order->created_at
             ])->original;
         }
