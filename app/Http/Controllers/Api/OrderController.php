@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Models\Table;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use PhpParser\Node\Expr\Array_;
 use Ramsey\Collection\Collection;
 
 class OrderController extends Controller
@@ -129,7 +130,7 @@ class OrderController extends Controller
             $arr = array();
             foreach ($food_orders as $item){
                 $arr[] = \response()->json([
-                    'food' => Food::all()->where('id', $item->food_id),
+                    'food' => Food::where('id', $item->food_id)->first(),
                     'quantity' => $item->quantity
                 ])->original;
             }
@@ -137,7 +138,8 @@ class OrderController extends Controller
                 'order_id' => $order->id,
                 'customer' => $order->customer_id,
                 'status' => $order->status,
-                'food_list' => $arr
+                'food_list' => $arr,
+                'order_created_at' => $order->created_at
             ])->original;
         }
 
