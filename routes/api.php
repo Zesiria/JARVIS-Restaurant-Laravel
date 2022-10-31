@@ -35,6 +35,8 @@ Route::get('orders/{id}', [\App\Http\Controllers\Api\OrderController::class, 'sh
 Route::apiResource('/food-orders', \App\Http\Controllers\Api\FoodOrderController::class);
 Route::get('food-orders/{id}', [\App\Http\Controllers\Api\FoodOrderController::class, 'show']);
 
+Route::apiResource('/reviews', \App\Http\Controllers\Api\ReviewController::class);
+
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
