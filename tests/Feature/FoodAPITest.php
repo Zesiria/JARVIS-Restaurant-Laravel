@@ -109,6 +109,18 @@ class FoodAPITest extends TestCase
 
     public function test_post_food_to_api_incomplete() {
         $response = $this->postJson('api/foods', ['name' => 'หมูนุ่ม', 'type' => 'เนื้อสัตว์']);
-        $response->assertStatus(500);
+        $response->assertStatus(201);
     }
+
+    public function test_put_food_to_api()
+    {
+        $response = $this->putJson('api/foods/1', ['name' => 'หมูธรรมดา', 'type' => 'เนื้อ', 'quantity' => 30, 'price' => 70.50, 'img_path' => 'imgs/000.png']);
+        $response->assertStatus(200);
+    }
+
+//    public function test_delete_food_from_api()
+//    {
+//        $response = $this->deleteJson('api/foods/1');
+//        $response->assertStatus(204);
+//    }
 }

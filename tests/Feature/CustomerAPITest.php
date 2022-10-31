@@ -73,10 +73,4 @@ class CustomerAPITest extends TestCase
         $response->assertStatus(204);
     }
 
-    public function test_delete_customer_from_api_failed()
-    {
-        $response = $this->deleteJson('/api/customers/9999');
-
-        $response->assertStatus(405);
-    }
 }
