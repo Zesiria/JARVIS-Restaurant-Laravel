@@ -16,8 +16,11 @@ class FoodController extends Controller
      */
     public function index()
     {
-        $food = Food::get();
-        return $food;
+        $foods = Food::get();
+        foreach ($foods as $food){
+            $food->img_path = url($food->img_path);
+        }
+        return $foods;
     }
 
     /**
@@ -35,7 +38,7 @@ class FoodController extends Controller
         if($request->has('price'))
             $food->price = (double)$request->input('price');
         if($request->has('img_path'))
-            $food->img_path = url("/storage/".$request->input('img_path'));
+            $food->img_path = "/storage/".$request->input('img_path');
         if($food->save()){
             return response()->json([
                 'success' => true,
