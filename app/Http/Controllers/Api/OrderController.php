@@ -102,11 +102,11 @@ class OrderController extends Controller
     {
         if($request->input('status') == 'accept'){
             $order = Order::find($id);
-            $order->status = 'IN PROCESS';
+            $order->accept();
             $order->save();
         }elseif($request->input('status') == 'serve'){
             $order = Order::find($id);
-            $order->status = 'COMPLETED';
+            $order->serve();
             $order->save();
         }
     }
