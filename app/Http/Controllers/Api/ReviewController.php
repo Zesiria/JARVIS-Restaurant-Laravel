@@ -49,10 +49,7 @@ class ReviewController extends Controller
         $review->description = $request->description;
         $review->save();
 
-        return response()->json([
-            'success' => true,
-            'data' => $review
-        ]);
+        return $review;
     }
 
     /**
