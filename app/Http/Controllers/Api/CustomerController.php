@@ -30,8 +30,8 @@ class CustomerController extends Controller
     {
         $customer = new Customer();
         if($request->has('number_people'))
-            $customer->number_people = (int)$request->input('number_people');
-        $customer->code = fake()->lexify("??????");
+            $customer->setNumberPeople((int)$request->input('number_people'));
+        $customer->setCode();
         if($customer->save()){
             return response()->json([
                 'success' => true,

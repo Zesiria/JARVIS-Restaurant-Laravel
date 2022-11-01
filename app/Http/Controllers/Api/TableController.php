@@ -80,8 +80,8 @@ class TableController extends Controller
             if($table->getSize() < (int)$request->input('number_people'))
                 return "Number of customer are more than table size !!";
             $customer = new Customer();
-            $customer->number_people = (int)$request->input('number_people');
-            $customer->code = fake()->lexify("??????");
+            $customer->setNumberPeople((int)$request->input('number_people'));
+            $customer->setCode();
             $customer->save();
 
             $table->checkIn($customer->id);

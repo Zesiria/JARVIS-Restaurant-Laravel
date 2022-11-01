@@ -12,6 +12,39 @@ use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 class Customer extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    /**
+     * @return mixed
+     */
+    public function getNumberPeople()
+    {
+        return $this->number_people;
+    }
+
+    /**
+     * @param mixed $number_people
+     */
+    public function setNumberPeople($number_people): void
+    {
+        $this->number_people = $number_people;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param mixed $code
+     */
+    public function setCode(): void
+    {
+        $this->code = fake()->lexify("??????");
+    }
+
     /**
      * The attributes that are mass assignable.
      *
