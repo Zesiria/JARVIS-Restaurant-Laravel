@@ -9,36 +9,35 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Order extends Model
 {
     use HasFactory;
+    public function customer(){
+        return $this->belongsTo(Customer::class);
+    }
 
-    /**
-     * @return mixed
-     */
-    public function getCustomerId()
-    {
+    public function foodorder(){
+        return $this->hasMany(FoodOrder::class);
+    }
+
+    public function getId(){
+        return $this->id;
+    }
+
+    public function getCustomerId(){
         return $this->customer_id;
     }
 
-    /**
-     * @param mixed $customer_id
-     */
-    public function setCustomerId($customer_id): void
-    {
+    public function setCustomerId($customer_id){
         $this->customer_id = $customer_id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getStatus()
-    {
+    public static function findOrderById($order_id){
+        return Order::find($order_id);
+    }
+
+    public function getStatus(){
         return $this->status;
     }
 
-    /**
-     * @param mixed $status
-     */
-    private function setStatus($status): void
-    {
+    private function setStatus($status){
         $this->status = $status;
     }
 
@@ -50,12 +49,19 @@ class Order extends Model
         $this->setStatus("COMPLETED");
     }
 
-    public function customer(){
-        return $this->belongsTo(Customer::class);
+    public static function getOrderFromCustomer($customer_id){
+        return Order::all()->where('customer_id', $customer_id);
     }
 
-    public function foodorder(): HasMany
-    {
-        return $this->hasMany(FoodOrder::class);
+    public static function getPendingOrder(){
+        return Order::all()
+            ->where('created_at', '>=', now()->startOfDay())
+            ->where('created_at', '<=', now()->endOfDay());
     }
+
+    public function getCreatedDate(){
+        return $this->created_at->format("Y-m-d H:s");
+    }
+
+
 }

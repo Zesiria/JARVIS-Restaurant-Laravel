@@ -16,14 +16,14 @@ class Table extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function setCustomerId(int $customer_id){
+    public function setCustomerId($customer_id){
         if(Customer::findCustomerById($customer_id))
             $this->customer_id = $customer_id;
         else
             throw new Exception("Please Generate Customer");
     }
 
-    public function setStatus(bool $status){
+    public function setStatus($status){
         $this->status = $status;
     }
 
@@ -50,7 +50,7 @@ class Table extends Model
         return $this->size;
     }
 
-    public static function findTableById(int $tableId){
+    public static function findTableById($tableId){
         return Table::find($tableId);
     }
 
@@ -62,6 +62,10 @@ class Table extends Model
     public function checkIn($customer_id){
         $this->setCustomerId($customer_id);
         $this->setStatus(true);
+    }
+
+    public static function findTableByCustomerId($customer_id){
+        return Table::all()->where('customer_id', $customer_id)->first();
     }
 
 }
