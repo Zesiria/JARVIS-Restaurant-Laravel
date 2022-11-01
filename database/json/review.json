@@ -1,0 +1,17 @@
+[
+    {
+        "id" : 1,
+        "customer_id": 1,
+        "description": "อร่อยคุ้มค่า"
+    },
+    {
+        "id" : 2,
+        "customer_id": 2,
+        "description": "คุ้มราคามากค่ะ"
+    },
+    {
+        "id" : 3,
+        "customer_id": 3,
+        "description": "อาหารให้เลือกเยอะมาก สมราคา"
+    }
+]
