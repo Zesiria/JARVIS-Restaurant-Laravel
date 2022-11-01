@@ -129,8 +129,8 @@ class OrderController extends Controller
             $arr = array();
             foreach ($food_orders as $item){
                 $arr[] = \response()->json([
-                    'food' => Food::where('id', $item->food_id)->first(),
-                    'quantity' => $item->quantity
+                    'food' => Food::findFoodById($item->getFoodId()),
+                    'quantity' => $item->getQuantity()
                 ])->original;
             }
             $ordersReturn[] = \response()->json([
