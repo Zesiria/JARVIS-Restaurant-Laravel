@@ -16,6 +16,22 @@ class Table extends Model
         return $this->belongsTo(Customer::class);
     }
 
+    public function getId(){
+        return $this->id;
+    }
+
+    public function getCustomerId(){
+        return $this->customer_id;
+    }
+
+    public function getStatus(){
+        return $this->status;
+    }
+
+    public function getSize(){
+        return $this->size;
+    }
+
     public function setCustomerId($customer_id){
         if(Customer::findCustomerById($customer_id))
             $this->customer_id = $customer_id;
@@ -34,26 +50,6 @@ class Table extends Model
             $this->size = $size;
     }
 
-    public function getId(){
-        return $this->id;
-    }
-
-    public function getCustomerId(){
-        return $this->customer_id;
-    }
-
-    public function getStatus(){
-        return $this->status;
-    }
-
-    public function getSize(){
-        return $this->size;
-    }
-
-    public static function findTableById($tableId){
-        return Table::find($tableId);
-    }
-
     public function checkOut(){
         $this->customer_id = null;
         $this->setStatus(true);
@@ -62,6 +58,10 @@ class Table extends Model
     public function checkIn($customer_id){
         $this->setCustomerId($customer_id);
         $this->setStatus(true);
+    }
+
+    public static function findTableById($tableId){
+        return Table::find($tableId);
     }
 
     public static function findTableByCustomerId($customer_id){
