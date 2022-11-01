@@ -46,6 +46,11 @@ ls = [
     "title" : "Food Order",
     "path" : 'database/json/food_orders.json',
     "http" : 'http://localhost/api/food-orders'
+},
+{
+    "title" : "Review",
+    "path" : 'database/json/review.json',
+    "http" : 'http://localhost/api/reviews'
 }
 ]
 
