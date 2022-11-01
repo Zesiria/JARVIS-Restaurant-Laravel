@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Table;
+use Exception;
 use Illuminate\Http\Request;
 
 class TableController extends Controller
@@ -23,20 +24,20 @@ class TableController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return string
+     * @throws Exception
      */
     public function store(Request $request)
     {
         $table = new Table();
         if($request->has('customer_id') and $request->input('customer_id') != null) {
-            $table->customer_id = $request->input('customer_id');
-            $table->status = 0;
+            $table->setCustomerId((int)$request->input('customer_id'));
+            $table->setStatus(false);
         }
-        else
-            $table->customer_id = null;
+
         if($request->has('size'))
-            $table->size = (int)$request->input('size');
+            $table->setSize((int)$request->input('size'));
         else
             return "Please insert table size";
         $table->save();
@@ -58,42 +59,38 @@ class TableController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param \App\Models\Table $table
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     public function update(Request $request, int $id)
     {
-        $table = Table::find($id);
+        $table = Table::findTableById($id);
 
         if($request->input('property') == "check-out"){
-            $table->customer_id = null;
-            $table->status = 1;
+            $table->checkOut();
             $table->save();
             return $table;
         }
 
         if($request->input('property') == "check-in"){
-            if(!$table->status)
+            if(!$table->getStatus())
                 return "Table is not available";
-//            if(!$request->has('customer_id'))
-//                return "Please insert customer";
-            if($table->size < (int)$request->input('number_people'))
+            if($table->getSize() < (int)$request->input('number_people'))
                 return "Number of customer are more than table size !!";
             $customer = new Customer();
             $customer->number_people = (int)$request->input('number_people');
             $customer->code = fake()->lexify("??????");
             $customer->save();
 
-            $table->customer_id = $customer->id;
-            $table->status = 0;
+            $table->checkIn($customer->id);
             $table->save();
             return $table;
         }
 
         if($request->has('size'))
-            $table->size = (int)$request->input('size');
+            $table->setSize((int)$request->input('size'));
 
         $table->save();
         return $table;
