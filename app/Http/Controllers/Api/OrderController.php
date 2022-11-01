@@ -35,18 +35,18 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $customer = Customer::find($request->input('customer_id'));
+        $customer = Customer::findCustomerById($request->input('customer_id'));
         if(!$customer)
             return "can't find customer id " . (string)$request->input('customer_id');
 
         $order = new Order();
-        $order->customer_id = $request->input('customer_id');
+        $order->setCustomerId($request->input('customer_id'));
         if($order->save()){
             if($request->has('foodOrders')){
                 $foodOrders = ($request->input('foodOrders'));
                 foreach ($foodOrders as $foodOrder){
                     $foodOrder_new = new FoodOrder();
-                    $foodOrder_new->order_id = $order->id;
+                    $foodOrder_new->order_id = $order->getId();
                     $foodOrder_new->food_id = $foodOrder['food_id'];
                     $foodOrder_new->quantity = (int)$foodOrder['orderQuantity'];
                     $foodOrder_new->save();
@@ -54,8 +54,8 @@ class OrderController extends Controller
             }
             return response()->json([
                 'success' => true,
-                'message' => 'Order saved successfully with id ' . $order->id,
-                'order_id' => $order->id
+                'message' => 'Order saved successfully with id ' . $order->getId(),
+                'order_id' => $order->getId()
             ], Response::HTTP_CREATED);
         }
         return response()->json([
@@ -72,8 +72,8 @@ class OrderController extends Controller
      */
     public function show(int $id)
     {
-        $order = Order::find($id);
-        $order_list = FoodOrder::get()->where('order_id', $order->id);
+        $order = Order::findOrderById($id);
+        $order_list = FoodOrder::get()->where('order_id', $order->getId());
         $arr = array();
 
         foreach ($order_list as $item){
@@ -83,10 +83,10 @@ class OrderController extends Controller
             ])->original;
         }
         return \response()->json([
-            'order_id' => $order->id,
-            'customer_id' => $order->customer_id,
-            'table_id' => Table::all()->where('customer_id', $order->customer_id)->first()->id,
-            'status' => $order->status,
+            'order_id' => $order->getId(),
+            'customer_id' => $order->getCustomerId(),
+            'table_id' => Table::findTableByCustomerId($order->getCustomerId())->getId(),
+            'status' => $order->getStatus(),
             'food_list' => $arr
         ]);
     }
@@ -100,15 +100,14 @@ class OrderController extends Controller
      */
     public function update(Request $request, int $id)
     {
+        $order = Order::findOrderById($id);
         if($request->input('status') == 'accept'){
-            $order = Order::find($id);
-            $order->status = 'IN PROCESS';
+            $order->accept();
             $order->save();
         }elseif($request->input('status') == 'serve'){
-            $order = Order::find($id);
-            $order->status = 'COMPLETED';
+            $order->serve();
             $order->save();
-        }
+        }return $order;
     }
 
     /**
@@ -122,46 +121,40 @@ class OrderController extends Controller
         //
     }
 
-    public function order_from(int $id){
-        $orders = Order::all()->where("customer_id", $id);
+    public function order_from(int $customer_id){
+        $orders = Order::getOrderFromCustomer($customer_id);
         $ordersReturn = array();
         foreach ($orders as $order){
-            $food_orders = FoodOrder::all()->where('order_id', $order->id);
+            $food_orders = FoodOrder::all()->where('order_id', $order->getId());
             $arr = array();
             foreach ($food_orders as $item){
                 $arr[] = \response()->json([
-                    'food' => Food::where('id', $item->food_id)->first(),
-                    'quantity' => $item->quantity
+                    'food' => Food::findFoodById($item->getFoodId()),
+                    'quantity' => $item->getQuantity()
                 ])->original;
             }
             $ordersReturn[] = \response()->json([
-                'order_id' => $order->id,
-                'customer' => $order->customer_id,
-                'status' => $order->status,
+                'order_id' => $order->getId(),
+                'customer' => $order->getCustomerId(),
+                'status' => $order->getStatus(),
                 'food_list' => $arr,
-                'order_created_at' => $order->created_at
+                'order_created_at' => $order->getCreatedDate()
             ])->original;
         }
-
         return $ordersReturn;
-
-
-
     }
 
     public function pending_order(): array
     {
-        $orders = Order::all()
-            ->where('created_at', '>=', now()->startOfDay())
-            ->where('created_at', '<=', now()->endOfDay());
+        $orders = Order::getPendingOrder();
         $arr = array();
         foreach ($orders as $order){
             $arr[] = response()->json([
-                'order_id' => $order->id,
-                'table_id' => Table::all()->where('customer_id', $order->customer_id)->first()->id,
-                'quantity' => FoodOrder::all()->where('order_id', $order->id)->count(),
-                'status' => $order->status,
-                'date' => $order->created_at
+                'order_id' => $order->getId(),
+                'table_id' => Table::findTableByCustomerId($order->getCustomerId())->getId(),
+                'quantity' => FoodOrder::all()->where('order_id', $order->getId())->count(),
+                'status' => $order->getStatus(),
+                'date' => $order->getCreatedDate()
             ])->original;
         }
 

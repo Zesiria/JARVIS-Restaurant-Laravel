@@ -12,11 +12,11 @@ class FoodController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function index()
     {
-        $foods = Food::get();
+        $foods = Food::all();
         foreach ($foods as $food){
             $food->img_path = url($food->img_path);
         }
@@ -32,18 +32,12 @@ class FoodController extends Controller
     public function store(Request $request)
     {
         $food = new Food();
-        $food->name = $request->input('name');
-        $food->type = $request->input('type');
-        $food->quantity = (int)$request->input('quantity');
-        if($request->has('price'))
-            $food->price = (double)$request->input('price');
-        if($request->has('img_path'))
-            $food->img_path = "/storage/".$request->input('img_path');
+        $this->setFood($food, $request);
         if($food->save()){
             return response()->json([
                 'success' => true,
-                'message' => 'Food saved successfully with id ' . $food->id,
-                'food_id' => $food->id
+                'message' => 'Food saved successfully with id ' . $food->getId(),
+                'food_id' => $food->getId()
             ], Response::HTTP_CREATED);
         }
         return response()->json([
@@ -61,7 +55,7 @@ class FoodController extends Controller
      */
     public function show(int $id)
     {
-        $food = Food::find($id);
+        $food = Food::findFoodById($id);
         return $food;
     }
 
@@ -74,17 +68,8 @@ class FoodController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        $food = Food::find($id);
-        if($request->has('name'))
-            $food->name = $request->input('name');
-        if($request->has('type'))
-            $food->type = $request->input('type');
-        if($request->has('quantity'))
-            $food->quantity = (int)$request->input('quantity');
-        if($request->has('price'))
-            $food->quantity = (double)$request->input('price');
-        if($request->has('img_path'))
-            $food->img_path = $request->input('img_path');
+        $food = Food::findFoodById($id);
+        $this->setFood($food, $request);
         $food->save();
         return $food;
     }
@@ -98,5 +83,18 @@ class FoodController extends Controller
     public function destroy(Food $food)
     {
         //
+    }
+
+    public function setFood(Food $food, Request $request){
+        if($request->has('name'))
+            $food->setName($request->input('name'));
+        if($request->has('type'))
+            $food->setType($request->input('type'));
+        if($request->has('quantity'))
+            $food->setQuantity((int)$request->input('quantity'));
+        if($request->has('price'))
+            $food->setPrice((double)$request->input('price'));
+        if($request->has('img_path'))
+            $food->setImagePath("/storage/".$request->input('img_path'));
     }
 }
