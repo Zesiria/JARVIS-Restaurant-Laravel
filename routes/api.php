@@ -63,7 +63,7 @@ Route::get('/orders-today',[\App\Http\Controllers\Api\OrderController::class, 'p
 Route::post('/image-upload', [\App\Http\Controllers\Api\ImageUploadController::class, 'upload']);
 Route::get('/bill/{table_id}', [\App\Http\Controllers\Api\ReportController::class, 'getBill']);
 Route::post('/report/foodSale', [\App\Http\Controllers\Api\ReportController::class, 'getFoodSale']);
-Route::get('/report/foodSaleToday', [\App\Http\Controllers\Api\ReportController::class, 'getFoodSaleToday']);
+Route::get('/report/foodSale', [\App\Http\Controllers\Api\ReportController::class, 'getReport']);
 Route::get('/report/foodSaleWeek', [\App\Http\Controllers\Api\ReportController::class, 'getSaleFoodOneWeekAgo']);
 Route::get('report/foodSaleAll', [\App\Http\Controllers\Api\ReportController::class, 'getFoodSaleAllTime']);
 Route::get('report/incomeToday', [\App\Http\Controllers\Api\ReportController::class, 'getIncomeToday']);
