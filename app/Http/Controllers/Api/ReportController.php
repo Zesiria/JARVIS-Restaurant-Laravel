@@ -211,4 +211,29 @@ class ReportController extends Controller
 
         return $days;
     }
+
+    public function getReport(){
+        $arr = array();
+        $foods = Food::all();
+        foreach ($foods as $food){
+            $arr[] = response()->json([
+                "food_name" => $food->getName(),
+                "sale_in_a_day" => FoodOrder::all()
+                    ->where('created_at', '>=' ,now()->subDays(1)->startOfDay())
+                    ->where('created_at', '<=' ,now()->subDays(1)->endOfDay())
+                    ->where('food_id', $food->getId())
+                    ->sum('quantity'),
+                "sale_in_a_week" => FoodOrder::all()
+                    ->where('created_at', '>=' ,now()->subDays(7)->startOfDay())
+                    ->where('created_at', '<=' ,now()->subDays(1)->endOfDay())
+                    ->where('food_id', $food->getId())
+                    ->sum('quantity'),
+                "sail_all_time" => FoodOrder::all()
+                    ->where('food_id', $food->getId())
+                    ->sum('quantity')
+            ])->original;
+        }
+
+        return $arr;
+    }
 }
