@@ -117,7 +117,7 @@ class TableAPITest extends TestCase
         $customer->save();
 
         $response = $this->postJson('api/tables', ['size' => 6]);
-        $response->assertStatus(201)->assertJson(fn (AssertableJson $json) => $json->where('customer_id', null)->etc());
+        $response->assertStatus(201)->assertJson(fn (AssertableJson $json) => $json->where('size', 6)->etc());
 
     }
 
@@ -136,12 +136,10 @@ class TableAPITest extends TestCase
         $response = $this->postJson('api/tables', ['customer_id' => $customer->id]);
         $response->assertStatus(200);
 
-        $response = $this->getJson('/api/tables/1');
-        $response->assertStatus(404);
     }
 
     /**
-     * update the table feature test.
+     * Update the table check out feature test.
      *
      * @return void
      */
@@ -162,6 +160,53 @@ class TableAPITest extends TestCase
         $response->assertStatus(200);
         $this->assertEquals(null, $table->customer_id);
         $this->assertEquals(1, $table->status);
+    }
+
+    /**
+     * Update the table check in feature test.
+     *
+     * @return void
+     */
+    public function test_put_table_to_api_check_in(): void
+    {
+        $customer = new Customer();
+        $customer->number_people = 6;
+        $customer->code = 'FOOD';
+        $customer->save();
+
+        $table = new Table();
+        $table->customer_id = $customer->id;
+        $table->size = 6;
+        $table->status = 0;
+        $table->save();
+
+        $response = $this->putJson('api/tables/1', ["property" => "check-in"]);
+        $response->assertStatus(200);
+        $this->assertEquals(null, $table->customer_id);
+        $this->assertEquals(0, $table->status);
+    }
+
+    /**
+     * Delete the table feature test.
+     *
+     * @return void
+     */
+    public function test_delete_table_from_api(): void
+    {
+        $customer = new Customer();
+        $customer->number_people = 6;
+        $customer->code = 'FOOD';
+        $customer->save();
+
+        $table = new Table();
+        $table->customer_id = $customer->id;
+        $table->size = 6;
+        $table->status = 0;
+        $table->save();
+
+        $response = $this->deleteJson('/api/tables/1');
+
+        $response->assertStatus(204);
 
     }
 }
