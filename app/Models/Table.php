@@ -57,7 +57,7 @@ class Table extends Model
 
     public function checkIn($customer_id){
         $this->setCustomerId($customer_id);
-        $this->setStatus(true);
+        $this->setStatus(false);
     }
 
     public static function findTableById($tableId){
