@@ -118,9 +118,9 @@ class FoodAPITest extends TestCase
         $response->assertStatus(200);
     }
 
-//    public function test_delete_food_from_api()
-//    {
-//        $response = $this->deleteJson('api/foods/1');
-//        $response->assertStatus(204);
-//    }
+    public function test_delete_food_from_api()
+    {
+        $response = $this->deleteJson('api/foods/1');
+        $response->assertStatus(204);
+    }
 }
