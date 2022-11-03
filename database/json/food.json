@@ -225,7 +225,7 @@
     "type": "vegetable",
     "price": 0,
     "quantity": 24,
-    "img_path": "images/vegetable/02_4vegetableกาดขาว.jpg",
+    "img_path": "images/vegetable/02_4ผักกาดขาว.jpg",
     "created_at": "2022-09-26 10:09:12",
     "updated_at": "2022-09-26 10:09:12"
   },
@@ -245,7 +245,7 @@
     "type": "vegetable",
     "price": 0,
     "quantity": 8,
-    "img_path": "images/vegetable/02_8vegetableบุ้ง.jpg",
+    "img_path": "images/vegetable/02_8ผักบุ้ง.jpg",
     "created_at": "2022-09-26 10:09:12",
     "updated_at": "2022-09-26 10:09:12"
   },
@@ -255,7 +255,7 @@
     "type": "appetizer",
     "price": 0,
     "quantity": 21,
-    "img_path": "images/appertizer/03_1ชุดขนมจีบ.jpg",
+    "img_path": "images/appetizer/03_1ชุดขนมจีบ.jpg",
     "created_at": "2022-09-26 10:09:12",
     "updated_at": "2022-09-26 10:09:12"
   },
@@ -265,7 +265,7 @@
     "type": "appetizer",
     "price": 0,
     "quantity": 29,
-    "img_path": "images/appertizer/03_2ชุดซาลาเปา.jpg",
+    "img_path": "images/appetizer/03_2ชุดซาลาเปา.jpg",
     "created_at": "2022-09-26 10:09:12",
     "updated_at": "2022-09-26 10:09:12"
   },
@@ -275,7 +275,7 @@
     "type": "appetizer",
     "price": 0,
     "quantity": 7,
-    "img_path": "images/appertizer/03_5ปอเปี๊ยะทอด.jpg",
+    "img_path": "images/appetizer/03_5ปอเปี๊ยะทอด.jpg",
     "created_at": "2022-09-26 10:09:12",
     "updated_at": "2022-09-26 10:09:12"
   }
