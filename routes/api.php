@@ -66,6 +66,6 @@ Route::get('/report/food-sale-daily', [\App\Http\Controllers\Api\ReportControlle
 Route::get('/report/food-sale', [\App\Http\Controllers\Api\ReportController::class, 'getReport']);
 //Route::get('/report/foodSaleWeek', [\App\Http\Controllers\Api\ReportController::class, 'getSaleFoodOneWeekAgo']);
 //Route::get('report/foodSaleAll', [\App\Http\Controllers\Api\ReportController::class, 'getFoodSaleAllTime']);
-Route::get('report/incomeToday', [\App\Http\Controllers\Api\ReportController::class, 'getIncomeToday']);
-Route::get('report/incomeWeek', [\App\Http\Controllers\Api\ReportController::class, 'getIncomeWeek']);
+Route::get('report/income-today', [\App\Http\Controllers\Api\ReportController::class, 'getIncomeToday']);
+//Route::get('report/income-week', [\App\Http\Controllers\Api\ReportController::class, 'getIncomeWeek']);
 

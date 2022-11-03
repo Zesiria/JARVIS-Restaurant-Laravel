@@ -110,7 +110,7 @@ class ReportController extends Controller
                 ])->original;
             }
             $output[] = response()->json([
-                "date" => now()->shiftTimezone('UTC')->subDays($i)->startOfDay(),
+                "date" => now()->shiftTimezone('UTC')->subDays($i)->startOfDay()->format("d-m-Y"),
                 "data" => $arr
             ])->original;
         }
@@ -170,26 +170,27 @@ class ReportController extends Controller
     public function  getIncomeToday()
     {
         $days = array();
-        $day = now()->startOfDay();
+        $day = now()->shiftTimezone("UTC")->startOfDay();
         $days[] = response()->json([
-            'date' => $day,
+            'date' => $day->format("d-m-Y"),
             'income' => Customer::all()
                 ->where('created_at', '>=', $day)
-                ->where('created_at', '<=', $day->endOfDay())
+                ->where('created_at', '<=', $day->copy()->endOfDay())
                 ->sum('price')
         ])->original;
-        for($i = 1;$i < 1;$i++){
+
+        for($i = 1;$i < 7;$i++){
             $day = now()->subDays($i)->startOfDay();
             $days[] = response()->json([
-                'date' => $day,
+                'date' => $day->format("d-m-Y"),
                 'income' => Customer::all()
                     ->where('created_at', '>=', $day)
-                    ->where('created_at', '<=', $day->endOfDay())
+                    ->where('created_at', '<=', $day->copy()->endOfDay())
                     ->sum('price')
             ])->original;
         }
 
-        return $days;
+        return array_reverse($days);
     }
 
     public function  getIncomeWeek()
@@ -200,7 +201,7 @@ class ReportController extends Controller
             'date' => $day,
             'income' => Customer::all()
                 ->where('created_at', '>=', $day)
-                ->where('created_at', '<=', $day->endOfDay())
+                ->where('created_at', '<=', $day->copy()->endOfDay())
                 ->sum('price')
         ])->original;
         for($i = 1;$i < 7;$i++){
@@ -209,7 +210,7 @@ class ReportController extends Controller
                 'date' => $day,
                 'income' => Customer::all()
                     ->where('created_at', '>=', $day)
-                    ->where('created_at', '<=', $day->endOfDay())
+                    ->where('created_at', '<=', $day->copy()->endOfDay())
                     ->sum('price')
             ])->original;
         }
