@@ -9,6 +9,7 @@ use App\Models\FoodOrder;
 use App\Models\Report;
 use App\Models\Table;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
 class ReportController extends Controller
 {
@@ -92,10 +93,32 @@ class ReportController extends Controller
         ]);
     }
 
-//    public function getFoodSale(Request $request): array
+    public function getFoodSale(): array
+    {
+        $output = array();
+        for ($i = 1; $i <= 7; $i++) {
+            $arr = array();
+            $foods = Food::all();
+            foreach ($foods as $food){
+                $arr[] = response()->json([
+                    "food_name" => $food->getName(),
+                    "sale_quantity" => FoodOrder::all()
+                        ->where('created_at', '>=' ,now()->shiftTimezone('UTC')->copy()->subDays($i)->startOfDay())
+                        ->where('created_at', '<=' ,now()->shiftTimezone('UTC')->copy()->subDays($i)->endOfDay())
+                        ->where('food_id', $food->getId())
+                        ->sum('quantity')
+                ])->original;
+            }
+            $output[] = response()->json([
+                "date" => now()->shiftTimezone('UTC')->subDays($i)->startOfDay(),
+                "data" => $arr
+            ])->original;
+        }
+        return $output;
+    }
+
+//    public function  getFoodSaleToday(): array
 //    {
-//        $start_date = $request->input('start_date');
-//        $end_date = $request->input('end_date');
 //        $foods = Food::all('id', 'name');
 //        $food_list = array();
 //        foreach ($foods as $food){
@@ -103,8 +126,8 @@ class ReportController extends Controller
 //                'id' => $food->id,
 //                'name' => $food->name,
 //                'quantity' => FoodOrder::all()
-//                    ->where('created_at', '>=', $start_date->startOfDay())
-//                    ->where('created_at', '<=', $end_date->endOfDay())
+//                    ->where('created_at', '>=', now()->startOfDay())
+//                    ->where('created_at', '<=', now()->endOfDay())
 //                    ->where('food_id', $food->id)
 //                    ->sum('quantity')
 //            ])->original;
@@ -112,55 +135,37 @@ class ReportController extends Controller
 //        return $food_list;
 //    }
 
-    public function  getFoodSaleToday(): array
-    {
-        $foods = Food::all('id', 'name');
-        $food_list = array();
-        foreach ($foods as $food){
-            $food_list[] = response()->json([
-                'id' => $food->id,
-                'name' => $food->name,
-                'quantity' => FoodOrder::all()
-                    ->where('created_at', '>=', now()->startOfDay())
-                    ->where('created_at', '<=', now()->endOfDay())
-                    ->where('food_id', $food->id)
-                    ->sum('quantity')
-            ])->original;
-        }
-        return $food_list;
-    }
-
-    public function getSaleFoodOneWeekAgo(){
-        $foods = Food::all('id', 'name');
-        $food_list = array();
-        foreach ($foods as $food){
-            $food_list[] = response()->json([
-                'id' => $food->id,
-                'name' => $food->name,
-                'quantity' => FoodOrder::all()
-                    ->where('created_at', '>=', now()->subDays(7)->startOfDay())
-                    ->where('created_at', '<=', now()->endOfDay())
-                    ->where('food_id', $food->id)
-                    ->sum('quantity')
-            ])->original;
-        }
-        return $food_list;
-    }
-
-    public function getFoodSaleAllTime(){
-        $foods = Food::all('id', 'name');
-        $food_list = array();
-        foreach ($foods as $food){
-            $food_list[] = response()->json([
-                'id' => $food->id,
-                'name' => $food->name,
-                'quantity' => FoodOrder::all()
-                    ->where('food_id', $food->id)
-                    ->sum('quantity')
-            ])->original;
-        }
-        return $food_list;
-    }
+//    public function getSaleFoodOneWeekAgo(){
+//        $foods = Food::all('id', 'name');
+//        $food_list = array();
+//        foreach ($foods as $food){
+//            $food_list[] = response()->json([
+//                'id' => $food->id,
+//                'name' => $food->name,
+//                'quantity' => FoodOrder::all()
+//                    ->where('created_at', '>=', now()->subDays(7)->startOfDay())
+//                    ->where('created_at', '<=', now()->endOfDay())
+//                    ->where('food_id', $food->id)
+//                    ->sum('quantity')
+//            ])->original;
+//        }
+//        return $food_list;
+//    }
+//
+//    public function getFoodSaleAllTime(){
+//        $foods = Food::all('id', 'name');
+//        $food_list = array();
+//        foreach ($foods as $food){
+//            $food_list[] = response()->json([
+//                'id' => $food->id,
+//                'name' => $food->name,
+//                'quantity' => FoodOrder::all()
+//                    ->where('food_id', $food->id)
+//                    ->sum('quantity')
+//            ])->original;
+//        }
+//        return $food_list;
+//    }
 
     public function  getIncomeToday()
     {
@@ -228,7 +233,7 @@ class ReportController extends Controller
                     ->where('created_at', '<=' ,now()->subDays(1)->endOfDay())
                     ->where('food_id', $food->getId())
                     ->sum('quantity'),
-                "sail_all_time" => FoodOrder::all()
+                "sale_all_time" => FoodOrder::all()
                     ->where('food_id', $food->getId())
                     ->sum('quantity')
             ])->original;
