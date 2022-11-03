@@ -65,7 +65,9 @@ class Food extends Model
     }
 
     public static function findFoodById($food_id){
-        return Food::find($food_id);
+        $food = Food::find($food_id);
+        $food->img_path = url($food->img_path);
+        return $food;
     }
 
 
