@@ -60,6 +60,10 @@ class Table extends Model
         $this->setStatus(false);
     }
 
+    public static function getAllTable(){
+        return Table::all();
+    }
+
     public static function findTableById($tableId){
         return Table::find($tableId);
     }
