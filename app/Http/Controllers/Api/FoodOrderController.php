@@ -3,23 +3,25 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreFoodOrderRequest;
+use App\Http\Resources\FoodOrderResource;
 use App\Models\CustomerOrder;
 use App\Models\FoodOrder;
 use App\Models\Order;
 use App\Models\Table;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class FoodOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        $foodOrders = FoodOrder::all();
-        return $foodOrders;
+        return FoodOrderResource::collection(FoodOrder::getAllFoodOrder());
     }
 
     /**
@@ -28,8 +30,9 @@ class FoodOrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return FoodOrder
      */
-    public function store(Request $request)
+    public function store(StoreFoodOrderRequest $request)
     {
+        $request->validated();
         $foodOrder = new FoodOrder();
         $foodOrder->setOrderId($request->input('order_id'));
         $foodOrder->setFoodId($request->input('food_id'));
@@ -67,21 +70,27 @@ class FoodOrderController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\FoodOrder  $foodOrder
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, FoodOrder $foodOrder)
+    public function update(Request $request, int $id)
     {
-        //
+        return response()->json([
+            "success" => false,
+            "message" => "can't update food order"
+        ], Response::HTTP_BAD_REQUEST);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\FoodOrder  $foodOrder
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(FoodOrder $foodOrder)
     {
-        //
+        return response()->json([
+            "success" => false,
+            "message" => "can't delete food order"
+        ], Response::HTTP_BAD_REQUEST);
     }
 }

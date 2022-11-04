@@ -1,0 +1,22 @@
+[
+    {
+       "id": 1,
+       "number_people": 2,
+        "property" : "check-in"
+    },
+    {
+       "id": 6,
+       "number_people": 4,
+        "property" : "check-in"
+    },
+    {
+        "id": 11,
+        "number_people": 8,
+        "property" : "check-in"
+    },
+    {
+        "id": 16,
+        "number_people": 10,
+        "property" : "check-in"
+    }
+]

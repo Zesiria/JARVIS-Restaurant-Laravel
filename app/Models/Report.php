@@ -17,15 +17,6 @@ class Report extends Model
         $customer = Customer::find($customer_id);
         $beveragePrice = $beveragePrice * $customer->number_people;
         $totalPrice += $customer->number_people * $pricePerPerson + $beveragePrice;
-
-        $orders = Order::all()->where('customer_id', $customer_id);
-        foreach($orders as $order){
-            $food_orders = FoodOrder::all()->where('order_id', $order->id);
-            foreach ($food_orders as $food_order){
-                $totalPrice += Food::find($food_order->food_id)->price;
-            }
-        }
-
         return $totalPrice;
     }
 
