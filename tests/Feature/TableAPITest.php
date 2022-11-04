@@ -156,10 +156,11 @@ class TableAPITest extends TestCase
         $table->status = 0;
         $table->save();
 
-        $response = $this->putJson('api/tables/1', ["property" => "check-out"]);
+        $response = $this->put('api/tables/1', ["property" => "check-out"]);
         $response->assertStatus(200);
-        $this->assertEquals(null, $table->customer_id);
-        $this->assertEquals(1, $table->status);
+        $this->assertEquals(1, Table::findTableById(1)->getStatus());
+        $this->assertNull(Table::findTableById(1)->getCustomerId());
+
     }
 
     /**
@@ -169,21 +170,18 @@ class TableAPITest extends TestCase
      */
     public function test_put_table_to_api_check_in(): void
     {
-        $customer = new Customer();
-        $customer->number_people = 6;
-        $customer->code = 'FOOD';
-        $customer->save();
 
         $table = new Table();
-        $table->customer_id = $customer->id;
+        $table->customer_id = null;
         $table->size = 6;
-        $table->status = 0;
+        $table->status = 1;
         $table->save();
 
-        $response = $this->putJson('api/tables/1', ["property" => "check-in"]);
+        $response = $this->put('api/tables/1', ["property" => "check-in", "number_people" => 6]);
         $response->assertStatus(200);
-        $this->assertEquals(null, $table->customer_id);
-        $this->assertEquals(0, $table->status);
+        $this->assertEquals(0, Table::findTableById(1)->getStatus());
+        $this->assertEquals(1, Table::findTableById(1)->getCustomerId());
+
     }
 
     /**
@@ -191,7 +189,7 @@ class TableAPITest extends TestCase
      *
      * @return void
      */
-    public function test_delete_table_from_api(): void
+    public function test_can_not_delete_table_from_api(): void
     {
         $customer = new Customer();
         $customer->number_people = 6;
@@ -206,7 +204,8 @@ class TableAPITest extends TestCase
 
         $response = $this->deleteJson('/api/tables/1');
 
-        $response->assertStatus(204);
+        $response->assertStatus(200);
+        $this->assertEquals(1, Table::all()->first()->getId());
 
     }
 }
