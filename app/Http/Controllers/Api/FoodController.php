@@ -33,7 +33,7 @@ class FoodController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(StoreCustomerRequest $request)
+    public function store(StoreFoodRequest $request)
     {
         $request->validated();
         $food = new Food();

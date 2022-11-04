@@ -5,6 +5,8 @@ namespace App\Models;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\Response;
 
 class Food extends Model
 {
@@ -25,7 +27,7 @@ class Food extends Model
     public function getType(){
         return $this->type;
     }
-    
+
     public function getQuantity(){
         return $this->quantity;
     }
@@ -60,6 +62,20 @@ class Food extends Model
 
     public static function getAllFood(){
         return Food::all();
+    }
+
+    public function addQuantityFood($amount){
+        if($amount <= 0)
+            throw new Exception("amount must be positive");
+        $this->setQuantity($this->getQuantity() + (int)$amount);
+    }
+
+    public function reduceQuantityFood($amount){
+        if($amount <= 0)
+            throw new Exception("amount must be positive");
+        if($amount > $this->getQuantity())
+            throw new Exception("amount must be less than " . (string)$this->getQuantity());
+        $this->setQuantity($this->getQuantity() - (int)$amount);
     }
 
 
