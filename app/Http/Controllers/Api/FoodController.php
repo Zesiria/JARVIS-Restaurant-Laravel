@@ -3,24 +3,28 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCustomerRequest;
+use App\Http\Requests\StoreFoodRequest;
+use App\Http\Resources\FoodResource;
 use App\Models\Food;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Http\Request;
+
 
 class FoodController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return string
      */
     public function index()
     {
-        $foods = Food::all();
+        $foods = Food::getAllFood();
         foreach ($foods as $food){
-            $food->img_path = url($food->img_path);
+            $food->setImgPath(url($food->getImgPath()));
         }
-        return $foods;
+        return FoodResource::collection($foods)->toJson();
     }
 
     /**
@@ -29,33 +33,34 @@ class FoodController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreCustomerRequest $request)
     {
+        $request->validated();
         $food = new Food();
-        $this->setFood($food, $request);
-        if($food->save()){
-            return response()->json([
-                'success' => true,
-                'message' => 'Food saved successfully with id ' . $food->getId(),
-                'food_id' => $food->getId()
-            ], Response::HTTP_CREATED);
-        }
+        $food->setName($request->get('name'));
+        $food->setType($request->get('type'));
+        $food->setQuantity((int)$request->get('quantity'));
+        $food->setImgPath($request->get('img_path'));
+        $food->save();
         return response()->json([
-            'success' => false,
-            'message' => 'Food saved failed'
-        ], Response::HTTP_BAD_REQUEST);
-
+            'success' => true,
+            'message' => 'Food saved successfully with id ' . $food->getId(),
+            'food_id' => $food->getId()
+        ], Response::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Food  $food
-     * @return \Illuminate\Http\Response
+     * @param  int  $id
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function show(int $id)
+    public function show($id)
     {
         $food = Food::findFoodById($id);
+        if(!$food){
+            return response()->json(null,Response::HTTP_NOT_FOUND);
+        }
         return $food;
     }
 
@@ -63,13 +68,17 @@ class FoodController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Food  $food
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(StoreFoodRequest $request, int $id)
     {
+        $request->validated();
         $food = Food::findFoodById($id);
-        $this->setFood($food, $request);
+        $food->setName($request->get('name'));
+        $food->setType($request->get('type'));
+        $food->setQuantity((int)$request->get('quantity'));
+        $food->setImgPath($request->get('img_path'));
         $food->save();
         return $food;
     }
@@ -77,24 +86,14 @@ class FoodController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Food  $food
-     * @return \Illuminate\Http\Response
+     * @param  int  $id
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Food $food)
+    public function destroy($id)
     {
-        //
-    }
-
-    public function setFood(Food $food, Request $request){
-        if($request->has('name'))
-            $food->setName($request->input('name'));
-        if($request->has('type'))
-            $food->setType($request->input('type'));
-        if($request->has('quantity'))
-            $food->setQuantity((int)$request->input('quantity'));
-        if($request->has('price'))
-            $food->setPrice((double)$request->input('price'));
-        if($request->has('img_path'))
-            $food->setImagePath("/storage/".$request->input('img_path'));
+        return response()->json([
+            "success" => false,
+            "message" => "can't delete food"
+        ], Response::HTTP_BAD_REQUEST);
     }
 }

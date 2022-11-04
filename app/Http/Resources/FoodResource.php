@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Resources;
+
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CustomerResource extends JsonResource
+class FoodResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,9 +16,9 @@ class CustomerResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'number_people' => $this->number_pepple,
-            'code' => $this->code,
-            'price' => $this->price,
+            'name' => $this->name,
+            'type' => $this->type,
+            'img_path' => $this->img_path,
             'created_at' => $this->created_at->format("Y-m-d H:m"),
             'updated_at' => $this->updated_at->format("Y-m-d H:m")
         ];
