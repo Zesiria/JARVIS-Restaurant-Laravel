@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\Customer;
+use App\Models\Table;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 
@@ -22,13 +23,39 @@ class CustomerTest extends TestCase
     }
 
 
-    public function test_create_customer()
+    public function testSetNumberPeople()
     {
         $customer = new Customer();
-        $customer->number_people = 6;
-        $customer->code = "FOOD";
-        $customer->save();
-
-        $this->assertEquals($customer->id, 1);
+        $customer->setNumberPeople(6);
+        $this->assertEquals(6, $customer->getNumberPeople());
     }
+
+    public function testSetCode()
+    {
+        $customer = new Customer();
+        $customer->setCode();
+        $this->assertNotNull($customer->getCode());
+    }
+
+    public function testTable()
+    {
+        $customer = new Customer();
+        $customer->belongsTo(Table::class);
+        $this->assertNotNull($customer->table());
+    }
+
+//    public function testOrder()
+//    {
+//        $customer = new Customer();
+//        $customer->hasMany(Order::class);
+//        $this->assertNotNull($customer->order());
+//    }
+//
+//    public function testFindCustomerById()
+//    {
+//        for ($i = 0; $i < 10; $i++) {
+//            $customer = new Customer();
+//        }
+//        $this->assertEquals(5, Customer::findCustomerById(5));
+//    }
 }
