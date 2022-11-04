@@ -15,4 +15,8 @@ class ExampleTest extends TestCase
     {
         $this->assertTrue(true);
     }
+
+    public function test_calculate_price(){
+
+    }
 }

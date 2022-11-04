@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\AuthCustomerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,8 @@ Route::get('orders/{id}', [\App\Http\Controllers\Api\OrderController::class, 'sh
 Route::apiResource('/food-orders', \App\Http\Controllers\Api\FoodOrderController::class);
 Route::get('food-orders/{id}', [\App\Http\Controllers\Api\FoodOrderController::class, 'show']);
 
+Route::apiResource('/reviews', \App\Http\Controllers\Api\ReviewController::class);
+
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
@@ -43,3 +46,26 @@ Route::group([
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
 });
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth/customer'
+], function ($router) {
+    Route::post('login', [AuthCustomerController::class, 'login']);
+    Route::post('logout', [AuthCustomerController::class, 'logout']);
+    Route::post('refresh', [AuthCustomerController::class, 'refresh']);
+    Route::post('me', [AuthCustomerController::class, 'me']);
+});
+
+Route::get('/order-from/{id}', [\App\Http\Controllers\Api\OrderController::class, 'order_from']);
+Route::get('/orders-today',[\App\Http\Controllers\Api\OrderController::class, 'pending_order']);
+
+Route::post('/image-upload', [\App\Http\Controllers\Api\ImageUploadController::class, 'upload']);
+Route::get('/bill/{table_id}', [\App\Http\Controllers\Api\ReportController::class, 'getBill']);
+Route::get('/report/food-sale-daily', [\App\Http\Controllers\Api\ReportController::class, 'getFoodSale']);
+Route::get('/report/food-sale', [\App\Http\Controllers\Api\ReportController::class, 'getReport']);
+//Route::get('/report/foodSaleWeek', [\App\Http\Controllers\Api\ReportController::class, 'getSaleFoodOneWeekAgo']);
+//Route::get('report/foodSaleAll', [\App\Http\Controllers\Api\ReportController::class, 'getFoodSaleAllTime']);
+Route::get('report/income-today', [\App\Http\Controllers\Api\ReportController::class, 'getIncomeToday']);
+//Route::get('report/income-week', [\App\Http\Controllers\Api\ReportController::class, 'getIncomeWeek']);
+

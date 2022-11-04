@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->integer('number_people');
+            $table->string('code');
+            $table->double('price')->default(0);
             $table->timestamps();
         });
     }
