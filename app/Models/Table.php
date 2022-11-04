@@ -59,7 +59,7 @@ class Table extends Model
         $this->setCustomerId($customer_id);
         $this->setStatus(false);
     }
-    
+
     public static function findTableById($tableId){
         return Table::find($tableId);
     }
