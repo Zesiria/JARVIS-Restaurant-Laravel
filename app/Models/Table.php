@@ -59,17 +59,17 @@ class Table extends Model
         $this->setCustomerId($customer_id);
         $this->setStatus(false);
     }
-
-    public static function getAllTable(){
-        return Table::all();
-    }
-
+    
     public static function findTableById($tableId){
         return Table::find($tableId);
     }
 
     public static function findTableByCustomerId($customer_id){
         return Table::all()->where('customer_id', $customer_id)->first();
+    }
+
+    public static function getAllTable(){
+        return Table::all();
     }
 
 }
