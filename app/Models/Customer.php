@@ -166,6 +166,6 @@ class Customer extends Authenticatable implements JWTSubject
     }
 
     public function getServiceChargePrice(){
-        return $this->pricePerPerson * $this->getNumberPeople() * $this->serviceCharge/100.0;
+        return ($this->pricePerPerson * $this->getNumberPeople() + $this->getTotalBeveragePrice()) * $this->serviceCharge/100.0;
     }
 }
