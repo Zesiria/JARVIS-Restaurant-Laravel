@@ -33,6 +33,7 @@ class CustomerController extends Controller
         $customer = new Customer();
         $customer->setNumberPeople((int)$request->get('number_people'));
         $customer->setCode();
+        $customer->calculatePrice();
         $customer->save();
         return response()->json([
             'success' => true,

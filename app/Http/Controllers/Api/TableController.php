@@ -96,6 +96,7 @@ class TableController extends Controller
         $customer = new Customer();
         $customer->setNumberPeople((int)$request->get('number_people'));
         $customer->setCode();
+        $customer->calculatePrice();
         $customer->save();
         $table->checkIn($customer->getId());
         $table->save();

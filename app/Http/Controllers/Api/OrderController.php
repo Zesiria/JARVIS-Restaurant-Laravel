@@ -63,7 +63,19 @@ class OrderController extends Controller
             $food->reduceQuantityFood($foodOrder_new->quantity);
             $food->save();
             $foodOrder_new->save();
+
+            $customer_order = new CustomerOrder();
+            $customer_order->customer_id = Order::findOrderById($foodOrder_new->getOrderId())->getCustomerId();
+            $table = Table::findTableByCustomerId($customer_order->customer_id);
+            if($table)
+                $customer_order->table_id = $table->getId();
+            $customer_order->order_id = $foodOrder_new->getOrderId();
+            $customer_order->food_id = $foodOrder_new->getFoodId();
+            $customer_order->quantity = $foodOrder_new->getQuantity();
+            $customer_order->save();
         }
+
+
 
         return response()->json([
             'success' => true,
