@@ -16,8 +16,8 @@ class FoodOrderResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'order_id' => $this->name,
-            'food_id' => $this->type,
+            'order_id' => $this->order_id,
+            'food_id' => $this->food_id,
             'quantity' => $this->quantity,
             'created_at' => $this->created_at->format("Y-m-d H:m"),
             'updated_at' => $this->updated_at->format("Y-m-d H:m")
