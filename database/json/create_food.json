@@ -4,7 +4,7 @@
     "name": "หมูนุ่ม",
     "type": "meat",
     "quantity": 100,
-    "img_path": "images/meat/01_10หมูนุ่ม.jpg",
+    "img_path": "storage/images/meat/01_10หมูนุ่ม.jpg",
     "created_at": "2022-11-04 14:21:33",
     "updated_at": "2022-11-04 14:21:33"
   },
@@ -13,7 +13,7 @@
     "name": "หมูชาบู",
     "type": "meat",
     "quantity": 100,
-    "img_path": "images/meat/01_11หมูชาบู.jpg",
+    "img_path": "storage/images/meat/01_11หมูชาบู.jpg",
     "created_at": "2022-11-04 14:21:36",
     "updated_at": "2022-11-04 14:21:36"
   },
@@ -22,7 +22,7 @@
     "name": "เนื้อวัว",
     "type": "meat",
     "quantity": 100,
-    "img_path": "images/meat/01_12เนื้อวัว.jpg",
+    "img_path": "storage/images/meat/01_12เนื้อวัว.jpg",
     "created_at": "2022-11-04 14:21:38",
     "updated_at": "2022-11-04 14:21:38"
   },
@@ -31,7 +31,7 @@
     "name": "เนื้อไก่",
     "type": "meat",
     "quantity": 100,
-    "img_path": "images/meat/01_13เนื้อไก่.jpg",
+    "img_path": "storage/images/meat/01_13เนื้อไก่.jpg",
     "created_at": "2022-11-04 14:21:38",
     "updated_at": "2022-11-04 14:21:38"
   },
@@ -40,7 +40,7 @@
     "name": "หมึกกรอบ",
     "type": "meat",
     "quantity": 100,
-    "img_path": "images/meat/01_14หมึกกรอบ.jpg",
+    "img_path": "storage/images/meat/01_14หมึกกรอบ.jpg",
     "created_at": "2022-11-04 14:21:38",
     "updated_at": "2022-11-04 14:21:38"
   },
@@ -49,7 +49,7 @@
     "name": "แมงกะพรุน",
     "type": "meat",
     "quantity": 100,
-    "img_path": "images/meat/01_15แมงกะพรุน.jpg",
+    "img_path": "storage/images/meat/01_15แมงกะพรุน.jpg",
     "created_at": "2022-11-04 14:21:38",
     "updated_at": "2022-11-04 14:21:38"
   },
@@ -58,7 +58,7 @@
     "name": "ลูกชิ้นกุ้ง",
     "type": "meat",
     "quantity": 100,
-    "img_path": "images/meat/01_16ลูกชิ้นกุ้ง.jpg",
+    "img_path": "storage/images/meat/01_16ลูกชิ้นกุ้ง.jpg",
     "created_at": "2022-11-04 14:21:38",
     "updated_at": "2022-11-04 14:21:38"
   },
@@ -67,7 +67,7 @@
     "name": "เต้าหู้ปลา",
     "type": "meat",
     "quantity": 100,
-    "img_path": "images/meat/01_17เต้าหู้ปลา.jpg",
+    "img_path": "storage/images/meat/01_17เต้าหู้ปลา.jpg",
     "created_at": "2022-11-04 14:21:38",
     "updated_at": "2022-11-04 14:21:38"
   },
@@ -76,7 +76,7 @@
     "name": "เส้นปลา",
     "type": "meat",
     "quantity": 100,
-    "img_path": "images/meat/01_18เส้นปลา.jpg",
+    "img_path": "storage/images/meat/01_18เส้นปลา.jpg",
     "created_at": "2022-11-04 14:21:39",
     "updated_at": "2022-11-04 14:21:39"
   },
@@ -85,7 +85,7 @@
     "name": "เกี๊ยวกุ้งชีส",
     "type": "meat",
     "quantity": 100,
-    "img_path": "images/meat/01_19เกี๊ยวกุ้งชีส.jpg",
+    "img_path": "storage/images/meat/01_19เกี๊ยวกุ้งชีส.jpg",
     "created_at": "2022-11-04 14:21:40",
     "updated_at": "2022-11-04 14:21:40"
   },
@@ -94,7 +94,7 @@
     "name": "เนื้อ Australia",
     "type": "meat",
     "quantity": 100,
-    "img_path": "images/meat/01_1ชุดเนื้อนำเข้า-Australia-สไลซ์.jpg",
+    "img_path": "storage/images/meat/01_1ชุดเนื้อนำเข้า-Australia-สไลซ์.jpg",
     "created_at": "2022-11-04 14:21:40",
     "updated_at": "2022-11-04 14:21:40"
   },
@@ -103,7 +103,7 @@
     "name": "ไข่ไก่",
     "type": "meat",
     "quantity": 100,
-    "img_path": "images/meat/01_21ไข่ไก่.jpg",
+    "img_path": "storage/images/meat/01_21ไข่ไก่.jpg",
     "created_at": "2022-11-04 14:21:40",
     "updated_at": "2022-11-04 14:21:40"
   },
@@ -112,7 +112,7 @@
     "name": "เนื้อ US",
     "type": "meat",
     "quantity": 100,
-    "img_path": "images/meat/01_2ชุดเนื้อนำเข้า-U.S-สไลซ์.jpg",
+    "img_path": "storage/images/meat/01_2ชุดเนื้อนำเข้า-U.S-สไลซ์.jpg",
     "created_at": "2022-11-04 14:21:40",
     "updated_at": "2022-11-04 14:21:40"
   },
@@ -121,7 +121,7 @@
     "name": "หอยแมลงภู่นิวซีแลนด์",
     "type": "meat",
     "quantity": 100,
-    "img_path": "images/meat/01_5หอยแมลงภู่นิวซีแลนด์.jpg",
+    "img_path": "storage/images/meat/01_5หอยแมลงภู่นิวซีแลนด์.jpg",
     "created_at": "2022-11-04 14:21:40",
     "updated_at": "2022-11-04 14:21:40"
   },
@@ -130,7 +130,7 @@
     "name": "กุ้งสด",
     "type": "meat",
     "quantity": 100,
-    "img_path": "images/meat/01_6กุ้งสด.jpg",
+    "img_path": "storage/images/meat/01_6กุ้งสด.jpg",
     "created_at": "2022-11-04 14:21:40",
     "updated_at": "2022-11-04 14:21:40"
   },
@@ -139,7 +139,7 @@
     "name": "ปลาหมึกสด",
     "type": "meat",
     "quantity": 100,
-    "img_path": "images/meat/01_7ปลาหมึกสด.jpg",
+    "img_path": "storage/images/meat/01_7ปลาหมึกสด.jpg",
     "created_at": "2022-11-04 14:21:41",
     "updated_at": "2022-11-04 14:21:41"
   },
@@ -148,7 +148,7 @@
     "name": "เนื้อปลาสด",
     "type": "meat",
     "quantity": 100,
-    "img_path": "images/meat/01_8เนื้อปลาสด.jpg",
+    "img_path": "storage/images/meat/01_8เนื้อปลาสด.jpg",
     "created_at": "2022-11-04 14:21:41",
     "updated_at": "2022-11-04 14:21:41"
   },
@@ -157,7 +157,7 @@
     "name": "วุ้นเส้น",
     "type": "vegetable",
     "quantity": 100,
-    "img_path": "images/vegetable/02_20วุ้นเส้น.jpg",
+    "img_path": "storage/images/vegetable/02_20วุ้นเส้น.jpg",
     "created_at": "2022-11-04 14:21:41",
     "updated_at": "2022-11-04 14:21:41"
   },
@@ -166,7 +166,7 @@
     "name": "เห็ดฟาง",
     "type": "vegetable",
     "quantity": 100,
-    "img_path": "images/vegetable/02_10เห็ดฟาง.jpg",
+    "img_path": "storage/images/vegetable/02_10เห็ดฟาง.jpg",
     "created_at": "2022-11-04 14:21:41",
     "updated_at": "2022-11-04 14:21:41"
   },
@@ -175,7 +175,7 @@
     "name": "ข้าวโพด",
     "type": "vegetable",
     "quantity": 100,
-    "img_path": "images/vegetable/02_1ข้าวโพด.jpg",
+    "img_path": "storage/images/vegetable/02_1ข้าวโพด.jpg",
     "created_at": "2022-11-04 14:21:41",
     "updated_at": "2022-11-04 14:21:41"
   },
@@ -184,7 +184,7 @@
     "name": "ฟักทอง",
     "type": "vegetable",
     "quantity": 100,
-    "img_path": "images/vegetable/02_2ฟักทองญี่ปุ่น.jpg",
+    "img_path": "storage/images/vegetable/02_2ฟักทองญี่ปุ่น.jpg",
     "created_at": "2022-11-04 14:21:41",
     "updated_at": "2022-11-04 14:21:41"
   },
@@ -193,7 +193,7 @@
     "name": "สาหร่ายวากาเมะ",
     "type": "vegetable",
     "quantity": 100,
-    "img_path": "images/vegetable/02_3วากาเมะเขียว.jpg",
+    "img_path": "storage/images/vegetable/02_3วากาเมะเขียว.jpg",
     "created_at": "2022-11-04 14:21:41",
     "updated_at": "2022-11-04 14:21:41"
   },
@@ -202,7 +202,7 @@
     "name": "ผักกาดขาว",
     "type": "vegetable",
     "quantity": 100,
-    "img_path": "images/vegetable/02_4vegetableกาดขาว.jpg",
+    "img_path": "storage/images/vegetable/02_4ผักกาดขาว.jpg",
     "created_at": "2022-11-04 14:21:41",
     "updated_at": "2022-11-04 14:21:41"
 
@@ -212,7 +212,7 @@
     "name": "กวางตุ้ง",
     "type": "vegetable",
     "quantity": 100,
-    "img_path": "images/vegetable/02_6กวางตุ้ง.jpg",
+    "img_path": "storage/images/vegetable/02_6กวางตุ้ง.jpg",
     "created_at": "2022-11-04 14:21:42",
     "updated_at": "2022-11-04 14:21:42"
   },
@@ -221,7 +221,7 @@
     "name": "ผักบุ้ง",
     "type": "vegetable",
     "quantity": 100,
-    "img_path": "images/vegetable/02_8vegetableบุ้ง.jpg",
+    "img_path": "storage/images/vegetable/02_8ผักบุ้ง.jpg",
     "created_at": "2022-11-04 14:21:43",
     "updated_at": "2022-11-04 14:21:43"
   },
@@ -230,7 +230,7 @@
     "name": "ขนมจีบ",
     "type": "appetizer",
     "quantity": 100,
-    "img_path": "images/appertizer/03_1ชุดขนมจีบ.jpg",
+    "img_path": "storage/images/appetizer/03_1ชุดขนมจีบ.jpg",
     "created_at": "2022-11-04 14:21:43",
     "updated_at": "2022-11-04 14:21:43"
   },
@@ -239,7 +239,7 @@
     "name": "ซาลาเปา",
     "type": "appetizer",
     "quantity": 100,
-    "img_path": "images/appertizer/03_2ชุดซาลาเปา.jpg",
+    "img_path": "storage/images/appetizer/03_2ชุดซาลาเปา.jpg",
     "created_at": "2022-11-04 14:21:43",
     "updated_at": "2022-11-04 14:21:43"
   },
@@ -248,7 +248,7 @@
     "name": "ปอเปี๊ยทอด",
     "type": "appetizer",
     "quantity": 100,
-    "img_path": "images/appertizer/03_5ปอเปี๊ยะทอด.jpg",
+    "img_path": "storage/images/appetizer/03_5ปอเปี๊ยะทอด.jpg",
     "created_at": "2022-11-04 14:21:43",
     "updated_at": "2022-11-04 14:21:43"
   }
