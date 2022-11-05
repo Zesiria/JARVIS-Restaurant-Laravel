@@ -71,14 +71,13 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreFoodRequest $request, int $id)
+    public function update(Request $request, int $id)
     {
-        $request->validated();
         $food = Food::findFoodById($id);
-        $food->setName($request->get('name'));
-        $food->setType($request->get('type'));
-        $food->setQuantity((int)$request->get('quantity'));
-        $food->setImgPath($request->get('img_path'));
+        if($request->has('addQuantity'))
+            $food->addQuantityFood((int)$request->get('addQuantity'));
+        if($request->has('reduceQuantity'))
+            $food->reduceQuantityFood((int)$request->get('reduceQuantity'));
         $food->save();
         return $food;
     }
