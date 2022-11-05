@@ -63,5 +63,9 @@ class Order extends Model
         return $this->created_at->format("Y-m-d H:s");
     }
 
+    public static function getAllOrder(){
+        return Order::all();
+    }
+
 
 }

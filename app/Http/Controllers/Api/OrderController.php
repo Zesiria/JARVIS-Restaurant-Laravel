@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreOrderRequest;
+use App\Http\Requests\UpdateOrderRequest;
+use App\Http\Resources\OrderResource;
 use App\Models\Customer;
 use App\Models\CustomerOrder;
 use App\Models\Food;
 use App\Models\FoodOrder;
 use App\Models\Order;
 use App\Models\Table;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use PhpParser\Node\Expr\Array_;
@@ -19,12 +23,11 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return string
      */
     public function index()
     {
-        $orders = Order::all();
-        return $orders;
+        return OrderResource::collection(Order::getAllOrder())->toJson();
     }
 
     /**
@@ -33,35 +36,53 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return string
      */
-    public function store(Request $request)
+    public function store(StoreOrderRequest $request)
     {
-        $customer = Customer::findCustomerById($request->input('customer_id'));
-        if(!$customer)
-            return "can't find customer id " . (string)$request->input('customer_id');
+        $request->validated();
+        $customer = Customer::findCustomerById($request->get('customer_id'));
+        if(!$customer){
+            throw new HttpResponseException(
+                response()->json([
+                    'success'   => false,
+                    'message'   => "can't find customer id " . $request->get('customer_id')
+                ], Response::HTTP_BAD_REQUEST));
+        }
+
 
         $order = new Order();
-        $order->setCustomerId($request->input('customer_id'));
-        if($order->save()){
-            if($request->has('foodOrders')){
-                $foodOrders = ($request->input('foodOrders'));
-                foreach ($foodOrders as $foodOrder){
-                    $foodOrder_new = new FoodOrder();
-                    $foodOrder_new->order_id = $order->getId();
-                    $foodOrder_new->food_id = $foodOrder['food_id'];
-                    $foodOrder_new->quantity = (int)$foodOrder['orderQuantity'];
-                    $foodOrder_new->save();
-                }
-            }
-            return response()->json([
-                'success' => true,
-                'message' => 'Order saved successfully with id ' . $order->getId(),
-                'order_id' => $order->getId()
-            ], Response::HTTP_CREATED);
+        $order->setCustomerId($request->get('customer_id'));
+        $order->save();
+        $foodOrders = ($request->get('foodOrders'));
+        foreach ($foodOrders as $foodOrder){
+            $foodOrder_new = new FoodOrder();
+            $foodOrder_new->order_id = $order->getId();
+            $foodOrder_new->food_id = $foodOrder['food_id'];
+            $foodOrder_new->quantity = (int)$foodOrder['orderQuantity'];
+
+            $food = Food::findFoodById($foodOrder_new->food_id);
+            $food->reduceQuantityFood($foodOrder_new->quantity);
+            $food->save();
+            $foodOrder_new->save();
+
+            $customer_order = new CustomerOrder();
+            $customer_order->customer_id = Order::findOrderById($foodOrder_new->getOrderId())->getCustomerId();
+            $table = Table::findTableByCustomerId($customer_order->customer_id);
+            if($table)
+                $customer_order->table_id = $table->getId();
+            $customer_order->order_id = $foodOrder_new->getOrderId();
+            $customer_order->food_id = $foodOrder_new->getFoodId();
+            $customer_order->quantity = $foodOrder_new->getQuantity();
+            $customer_order->save();
         }
+
+
+
         return response()->json([
-            'success' => false,
-            'message' => 'Order saved failed'
-        ], Response::HTTP_BAD_REQUEST);
+            'success' => true,
+            'message' => 'Order saved successfully with id ' . $order->getId(),
+            'order_id' => $order->getId()
+        ], Response::HTTP_CREATED);
+
     }
 
     /**
@@ -98,8 +119,9 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(UpdateOrderRequest $request, int $id)
     {
+        $request->validated();
         $order = Order::findOrderById($id);
         if($request->input('status') == 'accept'){
             $order->accept();
@@ -114,11 +136,14 @@ class OrderController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Order $order)
+    public function destroy(int $id)
     {
-        //
+        return response()->json([
+            "success" => false,
+            "message" => "can't delete order"
+        ], Response::HTTP_BAD_REQUEST);
     }
 
     public function order_from(int $customer_id){
