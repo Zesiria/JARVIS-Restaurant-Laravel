@@ -68,4 +68,8 @@ class Table extends Model
         return Table::all()->where('customer_id', $customer_id)->first();
     }
 
+    public static function getAllTable(){
+        return Table::all();
+    }
+
 }

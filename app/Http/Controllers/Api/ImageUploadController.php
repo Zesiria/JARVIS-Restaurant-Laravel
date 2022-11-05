@@ -10,7 +10,7 @@ class ImageUploadController extends Controller
 {
     function upload(Request $request){
         $file = $request->file('image');
-        $name = '/images/' . uniqid() . '.' . $file->extension();
+        $name = 'storage/images/' . uniqid() . '.' . $file->extension();
         $file->storePubliclyAs('public', $name);
 
         return response()->json([

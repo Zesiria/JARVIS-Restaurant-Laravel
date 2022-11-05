@@ -1,0 +1,106 @@
+[
+    {
+        "id" : 1,
+        "customer_id" :  1,
+        "foodOrders" : [
+            {
+                "food_id" : 1,
+                "orderQuantity" : 5
+            },
+            {
+                "food_id" : 2,
+                "orderQuantity" : 5
+            },
+            {
+                "food_id" : 3,
+                "orderQuantity" : 5
+            },
+            {
+                "food_id" : 4,
+                "orderQuantity" : 5
+            },
+            {
+                "food_id" : 5,
+                "orderQuantity" : 5
+            }
+        ]
+    },
+    {
+        "id" : 2,
+        "customer_id" :  2,
+        "foodOrders" : [
+            {
+                "food_id" : 6,
+                "orderQuantity" : 5
+            },
+            {
+                "food_id" : 7,
+                "orderQuantity" : 5
+            },
+            {
+                "food_id" : 8,
+                "orderQuantity" : 5
+            },
+            {
+                "food_id" : 9,
+                "orderQuantity" : 5
+            },
+            {
+                "food_id" : 10,
+                "orderQuantity" : 5
+            }
+        ]
+    },
+    {
+        "id" : 3,
+        "customer_id" :  3,
+        "foodOrders" : [
+            {
+                "food_id" : 11,
+                "orderQuantity" : 5
+            },
+            {
+                "food_id" : 12,
+                "orderQuantity" : 5
+            },
+            {
+                "food_id" : 13,
+                "orderQuantity" : 5
+            },
+            {
+                "food_id" : 14,
+                "orderQuantity" : 5
+            },
+            {
+                "food_id" : 15,
+                "orderQuantity" : 5
+            }
+        ]
+    },
+    {
+        "id" : 4,
+        "customer_id" :  4,
+        "foodOrders" : [
+            {
+                "food_id" : 16,
+                "orderQuantity" : 5
+            },
+            {
+                "food_id" : 17,
+                "orderQuantity" : 5
+            },
+            {
+                "food_id" : 18,
+                "orderQuantity" : 5
+            },
+            {
+                "food_id" : 19,
+                "orderQuantity" : 5
+            },
+            {
+                "food_id" : 20,
+                "orderQuantity" : 5
+            }
+        ]
+    }
+]

@@ -52,4 +52,8 @@ class FoodOrder extends Model
         $this->quantity = $quantity;
     }
 
+    public static function getAllFoodOrder(){
+        return FoodOrder::all();
+    }
+
 }

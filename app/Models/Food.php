@@ -5,6 +5,8 @@ namespace App\Models;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\Response;
 
 class Food extends Model
 {
@@ -26,15 +28,11 @@ class Food extends Model
         return $this->type;
     }
 
-    public function getPrice(){
-        return $this->price;
-    }
-
     public function getQuantity(){
         return $this->quantity;
     }
 
-    public function getImagePath(){
+    public function getImgPath(){
         return $this->img_path;
     }
 
@@ -48,19 +46,13 @@ class Food extends Model
         $this->type = $type;
     }
 
-    public function setPrice($price){
-        if($price < 0)
-            throw new Exception("price must more than or equal 0");
-        $this->price = $price;
-    }
-
     public function setQuantity($quantity){
         if($quantity < 0)
             throw new Exception("quantity must more than or equal 0");
         $this->quantity = $quantity;
     }
 
-    public function setImagePath($img_path){
+    public function setImgPath($img_path){
         $this->img_path = $img_path;
     }
 
@@ -68,6 +60,24 @@ class Food extends Model
         $food = Food::find($food_id);
         $food->img_path = url($food->img_path);
         return $food;
+    }
+
+    public static function getAllFood(){
+        return Food::all();
+    }
+
+    public function addQuantityFood($amount){
+        if($amount <= 0)
+            throw new Exception("amount must be positive");
+        $this->setQuantity($this->getQuantity() + (int)$amount);
+    }
+
+    public function reduceQuantityFood($amount){
+        if($amount <= 0)
+            throw new Exception("amount must be positive");
+        if($amount > $this->getQuantity())
+            throw new Exception("amount must be less than " . (string)$this->getQuantity());
+        $this->setQuantity($this->getQuantity() - (int)$amount);
     }
 
 

@@ -3,22 +3,26 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTableRequest;
+use App\Http\Requests\UpdateTableRequest;
+use App\Http\Resources\TableResource;
 use App\Models\Customer;
 use App\Models\Table;
 use Exception;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class TableController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return string
      */
     public function index()
     {
-        $tables = Table::all();
-        return $tables;
+        return TableResource::collection(Table::getAllTable())->toJson();
     }
 
     /**
@@ -28,18 +32,11 @@ class TableController extends Controller
      * @return string
      * @throws Exception
      */
-    public function store(Request $request)
+    public function store(StoreTableRequest $request)
     {
+        $request->validated();
         $table = new Table();
-        if($request->has('customer_id') and $request->input('customer_id') != null) {
-            $table->setCustomerId((int)$request->input('customer_id'));
-            $table->setStatus(false);
-        }
-
-        if($request->has('size'))
-            $table->setSize((int)$request->input('size'));
-        else
-            return "Please insert table size";
+        $table->setSize($request->get('size'));
         $table->save();
         return $table;
     }
@@ -52,7 +49,10 @@ class TableController extends Controller
      */
     public function show(int $id)
     {
-        $table = Table::find($id);
+        $table = Table::findTableById($id);
+        if(!$table){
+            return response()->json(null,Response::HTTP_NOT_FOUND);
+        }
         return $table;
     }
 
@@ -64,34 +64,41 @@ class TableController extends Controller
      * @return string
      * @throws Exception
      */
-    public function update(Request $request, int $id)
+    public function update(UpdateTableRequest $request, int $id)
     {
+        $request->validated();
         $table = Table::findTableById($id);
 
-        if($request->input('property') == "check-out"){
+        if($request->get('property') == "check-out"){
             $table->checkOut();
             $table->save();
             return $table;
         }
 
-        if($request->input('property') == "check-in"){
-            if(!$table->getStatus())
-                return "Table is not available";
-            if($table->getSize() < (int)$request->input('number_people'))
-                return "Number of customer are more than table size !!";
-            $customer = new Customer();
-            $customer->setNumberPeople((int)$request->input('number_people'));
-            $customer->setCode();
-            $customer->save();
+        if($request->get('property') == "check-in"){
+            if(!$request->has('number_people')){
+                throw new HttpResponseException(
+                    response()->json([
+                        'success'   => false,
+                        'message'   => 'Please enter number_people',
+                    ], Response::HTTP_BAD_REQUEST));
+            }
 
-            $table->checkIn($customer->id);
-            $table->save();
-            return $table;
+            if((int)$request->get('number_people') > $table->getSize()){
+                throw new HttpResponseException(
+                    response()->json([
+                        'success'   => false,
+                        'message'   => 'number_people must be less than table size',
+                    ], Response::HTTP_BAD_REQUEST));
+            }
         }
 
-        if($request->has('size'))
-            $table->setSize((int)$request->input('size'));
-
+        $customer = new Customer();
+        $customer->setNumberPeople((int)$request->get('number_people'));
+        $customer->setCode();
+        $customer->calculatePrice();
+        $customer->save();
+        $table->checkIn($customer->getId());
         $table->save();
         return $table;
     }
@@ -100,10 +107,13 @@ class TableController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Table  $table
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Table $table)
     {
-        //
+        return response()->json([
+            "success" => false,
+            "message" => "can't delete table"
+        ], Response::HTTP_BAD_REQUEST);
     }
 }
