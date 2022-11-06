@@ -72,24 +72,14 @@ class ReportController extends Controller
     {
         $table = Table::all()->find($table_id);
         $customer = Customer::all()->find($table->customer_id);
-        $pricePerPerson = 219.0;
-        $beveragePrice = 39.0;
-        $serviceCharge = 10.0;
-        $priceBeforeCharge = Report::calculatePrice($customer->id, $pricePerPerson, $beveragePrice);
-        $totalPrice = $priceBeforeCharge + $serviceCharge/100 * $priceBeforeCharge;
-        $customer->price = $totalPrice;
-        $customer->save();
 
         return response()->json([
             'table' => $table->id,
-            'number_people' => $customer->number_people,
-            'buffet_price' => $pricePerPerson * $customer->number_people,
-            'beverage_price' => $beveragePrice * $customer->number_people,
-            'add_food' => json_encode([
-
-            ]),
-            'service_charge_price' =>  $serviceCharge/100 * $priceBeforeCharge,
-            'total_price' => $totalPrice,
+            'number_people' => $customer->getNumberPeople(),
+            'buffet_price' => $customer->getBuffetPrice(),
+            'beverage_price' => $customer->getTotalBeveragePrice(),
+            'service_charge_price' =>  $customer->getServiceChargePrice(),
+            'total_price' => $customer->getTotalPrice(),
         ]);
     }
 
