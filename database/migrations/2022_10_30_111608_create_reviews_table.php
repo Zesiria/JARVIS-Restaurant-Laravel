@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('reviews', function (Blueprint $table) {
-            $table->id('review_id');
+            $table->id();
             $table->foreignIdFor(\App\Models\Customer::class);
             $table->string('description');
             $table->timestamps();
