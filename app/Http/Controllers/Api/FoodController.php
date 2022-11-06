@@ -14,6 +14,21 @@ use Illuminate\Http\Request;
 class FoodController extends Controller
 {
     /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        if (auth('api')->check()){
+            $this->middleware('auth:api', ['except' => ['index']]);
+        }
+        else {
+            $this->middleware('auth:customer', ['except' => ['index']]);
+        }
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return string
