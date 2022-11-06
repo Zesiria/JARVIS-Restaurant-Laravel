@@ -42,12 +42,13 @@ class CustomerTest extends TestCase
         $this->assertNotNull($customer->getCode());
     }
 
-    public function testSetPrice()
+    public function testCalculatePrice()
     {
         $customer = new Customer();
         $customer->setNumberPeople(1);
         $customer->calculatePrice();
-        $price = (1 * 219 + 1 * 39) + ((1 * 219 + 1 * 39) * 0.1);
-        $this->assertEquals($price, $customer->getTotalPrice());
+        $totalPrice = (1 * 219 + 1 * 39) + ((1 * 219 + 1 * 39) * 0.1);
+        $this->assertEquals($totalPrice, $customer->getTotalPrice());
     }
+
 }
