@@ -106,14 +106,14 @@ docker compose exec app npm run dev
 
 ## ข้อมูลเพิ่มเติม
 ___
-| ข้อมูล             | ไฟล์                                                                                    |
-|--------------------|-----------------------------------------------------------------------------------------|
-| User Story         | [information.pdf](information.pdf)                                                      |
-| Personas           | [information.pdf](information.pdf)                                                      |
-| User Journey       | [information.pdf](information.pdf)                                                      |
-| Burn-down chart    | [information.pdf](information.pdf)                                                      |
-| UI Flow            | [ui-flow.pdf](ui-flow.pdf)                                                              |
-| Jmeter config file | [Jarvis HTTP Request.jmx](Jarvis HTTP Request.jmx)                                      |
-| Jira               | [Jira Link](https://wongsakonproject.atlassian.net/jira/software/projects/JR/boards/2)  |
+| ข้อมูล             | ไฟล์                                                                                   |
+|--------------------|----------------------------------------------------------------------------------------|
+| User Story         | [information.pdf](information.pdf)                                                     |
+| Personas           | [information.pdf](information.pdf)                                                     |
+| User Journey       | [information.pdf](information.pdf)                                                     |
+| Burn-down chart    | [information.pdf](information.pdf)                                                     |
+| UI Flow            | [ui-flow.pdf](ui-flow.pdf)                                                             |
+| Jmeter config file | [Jarvis-HTTP-Request.jmx](Jarvis-HTTP-Request.jmx)                                     |
+| Jira               | [Jira Link](https://wongsakonproject.atlassian.net/jira/software/projects/JR/boards/2) |
 
 
