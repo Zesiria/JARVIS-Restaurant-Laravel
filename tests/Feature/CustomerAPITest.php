@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
+use function GuzzleHttp\Promise\all;
 
 class CustomerAPITest extends TestCase
 {
@@ -14,6 +15,12 @@ class CustomerAPITest extends TestCase
     {
         parent::setUp();
         $this->artisan('migrate:fresh');
+    }
+
+    protected function tearDown() : void
+    {
+        Artisan::call('migrate:reset');
+        parent::tearDown();
     }
 
     public function test_get_customer_from_api()
@@ -55,22 +62,30 @@ class CustomerAPITest extends TestCase
     {
         $response = $this->postJson('/api/customers', ["code" => "COOK"]);
 
-        $response->assertStatus(500);
+        $response->assertStatus(400);
     }
 
     public function test_put_customer_to_api()
     {
+        $customer = new Customer();
+        $customer->number_people = 6;
+        $customer->code = "FOOD";
+        $customer->save();
         $response = $this->putJson('/api/customers/1', ["number_people" => 6]);
 
-        $response->assertStatus(201);
+        $response->assertStatus(200);
 
     }
 
     public function test_delete_customer_from_api()
     {
+        $customer = new Customer();
+        $customer->number_people = 6;
+        $customer->code = "FOOD";
+        $customer->save();
         $response = $this->deleteJson('/api/customers/1');
 
-        $response->assertStatus(204);
+        $response->assertStatus(400);
     }
 
 }

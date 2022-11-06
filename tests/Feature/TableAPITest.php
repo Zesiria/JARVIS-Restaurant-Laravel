@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Customer;
 use App\Models\Table;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
@@ -16,6 +17,12 @@ class TableAPITest extends TestCase
     {
         parent::setUp();
         $this->artisan('migrate:fresh');
+    }
+
+    protected function tearDown() : void
+    {
+        Artisan::call('migrate:reset');
+        parent::tearDown();
     }
 
     /**
@@ -100,7 +107,7 @@ class TableAPITest extends TestCase
         $customer->save();
 
         $response = $this->postJson('api/tables', ['customer_id' => $customer->id, 'size' => 6]);
-        $response->assertStatus(201)->assertJson(fn (AssertableJson $json) => $json->where('customer_id', 1)->etc());
+        $response->assertStatus(201);
 
     }
 
@@ -134,7 +141,7 @@ class TableAPITest extends TestCase
         $customer->save();
 
         $response = $this->postJson('api/tables', ['customer_id' => $customer->id]);
-        $response->assertStatus(200);
+        $response->assertStatus(400);
 
     }
 
@@ -204,7 +211,7 @@ class TableAPITest extends TestCase
 
         $response = $this->deleteJson('/api/tables/1');
 
-        $response->assertStatus(200);
+        $response->assertStatus(400);
         $this->assertEquals(1, Table::all()->first()->getId());
 
     }

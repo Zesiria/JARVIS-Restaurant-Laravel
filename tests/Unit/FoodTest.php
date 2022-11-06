@@ -106,7 +106,6 @@ class FoodTest extends TestCase
         $food->setType('meat');
         $food->setQuantity( 10);
         $food->reduceQuantityFood(11);
-
     }
 
 }

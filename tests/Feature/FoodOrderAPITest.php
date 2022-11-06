@@ -8,6 +8,7 @@ use App\Models\FoodOrder;
 use App\Models\Order;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
@@ -17,6 +18,12 @@ class FoodOrderAPITest extends TestCase
     {
         parent::setUp();
         $this->artisan('migrate:fresh');
+    }
+
+    protected function tearDown() : void
+    {
+        Artisan::call('migrate:reset');
+        parent::tearDown();
     }
 
     public function test_get_all_food_orders_from_api()
@@ -54,7 +61,9 @@ class FoodOrderAPITest extends TestCase
         $response = $this->getJson('/api/food-orders');
 
         $response->assertStatus(200);
-        $this->assertEquals(2, collect(json_decode($response->getContent()))->count());
+        $responseContent = $response->getContent();
+        $responseList = json_decode($responseContent)->data;
+        $this->assertEquals(2, collect($responseList)->count());
 
     }
 

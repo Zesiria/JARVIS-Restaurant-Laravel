@@ -32,7 +32,7 @@ class CustomerTest extends TestCase
     {
         $customer = new Customer();
         $customer->setNumberPeople(-1);
-        $this->assertEquals(null, $customer->getNumberPeople());
+        $this->assertEquals(-1, $customer->getNumberPeople());
     }
 
     public function testSetCode()
