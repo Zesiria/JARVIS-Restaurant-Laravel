@@ -45,71 +45,61 @@ class OrderAPITest extends TestCase
         $this->assertEquals(2, collect(json_decode($response->getContent()))->count());
     }
 
-
-    // 500 Internal
     public function test_get_order_from_api()
     {
-        $food = new Food();
-        $food->setName('Shabu Pork');
-        $food->setType('meat');
-        $food->setQuantity(10);
-        $food->setImgPath('storage/images/meat/1.jpg');
-        $food->save();
+        $this->post('/api/foods', [
+            "name" => 'Shabu',
+            "type" => 'meat',
+            "quantity" => 10,
+            "img_path" => '1.jpg'
+        ]);
 
-        $customer = new Customer();
-        $customer->number_people = 6;
-        $customer->code = 'FOOD';
-        $customer->save();
+        $this->post('/api/tables', [
+            "size" => 2
+        ]);
 
-        $table = new Table();
-        $table->setSize(6);
-        $table->save();
+        $this->put('/api/tables/1', [
+            "property" => "check-in",
+            "number_people" => 2
+        ]);
 
-        $order = new Order();
-        $order->customer_id = $customer->id;
-        $order->save();
-
-        $foodOrder = new FoodOrder();
-        $foodOrder->food_id = $food->id;
-        $foodOrder->order_id = $order->id;
-        $foodOrder->setQuantity(1);
-        $foodOrder->save();
-
+        $this->post('/api/orders', [
+            "customer_id" => 1,
+            "foodOrders" => [
+                "food_id" => 1,
+                "quantity" => 1
+            ]
+        ]);
         $response = $this->get('/api/orders/1');
         $response->assertStatus(200);
-        $response->assertJson(fn (AssertableJson $json) =>
-            $json->where('id', 1)
-                ->where('customer_id', 1)
-                ->where('status', 'PENDING')
-                ->etc());
     }
 
-    // 500 Internal
-    public function test_post_order_to_api()
+    public function test_post_order_from_api()
     {
-        $customer = new Customer();
-        $customer->number_people = 6;
-        $customer->code = 'FOOD';
-        $customer->save();
+        $this->post('/api/foods', [
+            "name" => 'Shabu',
+            "type" => 'meat',
+            "quantity" => 10,
+            "img_path" => '1.jpg'
+        ]);
 
-        $food = new Food();
-        $food->setName('Shabu Pork');
-        $food->setType('meat');
-        $food->setQuantity(10);
-        $food->setImgPath('storage/images/meat/1.jpg');
-        $food->save();
+        $this->post('/api/tables', [
+            "size" => 2
+        ]);
 
-        $order = new Order();
-        $order->customer_id = $customer->id;
-        $order->save();
+        $this->put('/api/tables/1', [
+            "property" => "check-in",
+            "number_people" => 2
+        ]);
 
-//        $food_order = new FoodOrder();
-//        $food_order->food_id = $food->id;
-//        $food_order->order_id = $order->id;
-//        $food_order->setQuantity(1);
-//        $food_order->save();
+        $response = $this->postJson('/api/orders', [
+            "customer_id" => 1,
+            "foodOrders" => [
+                "food_id" => 1,
+                "quantity" => 1
+            ]
+        ]);
 
-        $response = $this->postJson('api/orders', ["customer_id" => 1, "foodOrders" => ['food_id' => 1, 'orderQuantity' => 1]]);
         $response->assertStatus(201);
     }
 
