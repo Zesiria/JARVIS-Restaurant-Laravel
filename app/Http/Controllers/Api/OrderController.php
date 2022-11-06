@@ -21,6 +21,21 @@ use Ramsey\Collection\Collection;
 class OrderController extends Controller
 {
     /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        if (auth('api')->check()){
+            $this->middleware('auth:api');
+        }
+        else {
+            $this->middleware('auth:customer');
+        }
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return string
