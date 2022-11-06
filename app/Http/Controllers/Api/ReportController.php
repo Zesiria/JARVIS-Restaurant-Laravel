@@ -175,6 +175,7 @@ class ReportController extends Controller
     public function  getIncomeToday()
     {
         $days = array();
+        $income = Customer::all()->sum('price');
         $day = now()->shiftTimezone("UTC")->startOfDay();
         $days[] = response()->json([
             'date' => $day->format("d-m-Y"),
@@ -194,8 +195,10 @@ class ReportController extends Controller
                     ->sum('price')
             ])->original;
         }
-
-        return array_reverse($days);
+        return response()->json([
+            'income' => $income,
+            'reports' => $days
+        ]);
     }
 
     public function  getIncomeWeek()
@@ -230,13 +233,13 @@ class ReportController extends Controller
             $arr[] = response()->json([
                 "food_name" => $food->getName(),
                 "sale_in_a_day" => FoodOrder::all()
-                    ->where('created_at', '>=' ,now()->subDays(1)->startOfDay())
-                    ->where('created_at', '<=' ,now()->subDays(1)->endOfDay())
+                    ->where('created_at', '>=' ,now()->subDays()->startOfDay())
+                    ->where('created_at', '<=' ,now()->subDays()->endOfDay())
                     ->where('food_id', $food->getId())
                     ->sum('quantity'),
                 "sale_in_a_week" => FoodOrder::all()
                     ->where('created_at', '>=' ,now()->subDays(7)->startOfDay())
-                    ->where('created_at', '<=' ,now()->subDays(1)->endOfDay())
+                    ->where('created_at', '<=' ,now()->subDays()->endOfDay())
                     ->where('food_id', $food->getId())
                     ->sum('quantity'),
                 "sale_all_time" => FoodOrder::all()

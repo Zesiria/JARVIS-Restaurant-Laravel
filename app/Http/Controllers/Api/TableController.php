@@ -85,6 +85,9 @@ class TableController extends Controller
         $table = Table::findTableById($id);
 
         if($request->get('property') == "check-out"){
+            $customer = Customer::findCustomerById($table->getCustomerId());
+            $customer->code = null;
+            $customer->save();
             $table->checkOut();
             $table->save();
             return $table;
