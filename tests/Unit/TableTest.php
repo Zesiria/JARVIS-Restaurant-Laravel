@@ -22,9 +22,6 @@ class TableTest extends TestCase
         parent::tearDown();
     }
 
-    /**
-     * @throws Exception
-     */
     public function testSetCustomerId()
     {
         for ($i = 0; $i < 10; ++$i) {
@@ -36,8 +33,25 @@ class TableTest extends TestCase
             $table->setSize(6);
             $table->save();
         }
+        $table = Table::all()->first();
         $table->setCustomerId(2);
         $this->assertEquals(2, $table->getCustomerId());
+    }
+
+    public function testSetCustomerIdIncorrect()
+    {
+        for ($i = 0; $i < 10; ++$i) {
+            $customer = new Customer();
+            $customer->setNumberPeople(6);
+            $customer->setCode();
+            $customer->save();
+            $table = new Table();
+            $table->setSize(6);
+            $table->save();
+        }
+        $this->expectException(Exception::class);
+        $table = Table::all()->first();
+        $table->setCustomerId(11);
     }
 
     public function testSetSize()
@@ -45,6 +59,13 @@ class TableTest extends TestCase
         $table = new Table();
         $table->setSize(10);
         $this->assertEquals(10, $table->getSize());
+    }
+
+    public function testSetSizeIncorrect()
+    {
+        $table = new Table();
+        $this->expectException(Exception::class);
+        $table->setSize(11);
     }
 
     public function testCheckOut()
@@ -59,6 +80,7 @@ class TableTest extends TestCase
 
         $table->checkOut();
         $this->assertNull($table->getCustomerId());
+        $this->assertTrue($table->getStatus());
     }
 
     public function testCheckIn()
@@ -73,6 +95,7 @@ class TableTest extends TestCase
 
         $table->checkIn(1);
         $this->assertNotNull($table->getCustomerId());
+        $this->assertFalse($table->getStatus());
     }
 
 
