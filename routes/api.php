@@ -37,6 +37,8 @@ Route::get('food-orders/{id}', [\App\Http\Controllers\Api\FoodOrderController::c
 
 Route::apiResource('/reviews', \App\Http\Controllers\Api\ReviewController::class);
 
+Route::apiResource('/users',\App\Http\Controllers\Api\UserController::class);
+
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
@@ -64,8 +66,6 @@ Route::post('/image-upload', [\App\Http\Controllers\Api\ImageUploadController::c
 Route::get('/bill/{table_id}', [\App\Http\Controllers\Api\ReportController::class, 'getBill']);
 Route::get('/report/food-sale-daily', [\App\Http\Controllers\Api\ReportController::class, 'getFoodSale']);
 Route::get('/report/food-sale', [\App\Http\Controllers\Api\ReportController::class, 'getReport']);
-//Route::get('/report/foodSaleWeek', [\App\Http\Controllers\Api\ReportController::class, 'getSaleFoodOneWeekAgo']);
-//Route::get('report/foodSaleAll', [\App\Http\Controllers\Api\ReportController::class, 'getFoodSaleAllTime']);
 Route::get('report/income-today', [\App\Http\Controllers\Api\ReportController::class, 'getIncomeToday']);
-//Route::get('report/income-week', [\App\Http\Controllers\Api\ReportController::class, 'getIncomeWeek']);
 
+Route::post('/change-password',[\App\Http\Controllers\Api\UserController::class,'changePassword']);
