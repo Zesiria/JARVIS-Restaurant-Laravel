@@ -21,8 +21,8 @@ class FoodSeeder extends Seeder
         $food->type = "meat";
         $food->quantity = 100;
         $food->img_path= "storage/images/meat/01_10หมูนุ่ม.jpg";
-        $food->created_at = "2022-11-04 14:21:33";
-        $food->updated_at= "2022-11-04 14:21:33";
+//        $food->created_at = "2022-11-04 14:21:33";
+//        $food->updated_at= "2022-11-04 14:21:33";
         $food->save();
 
         $food = new Food();
@@ -30,8 +30,8 @@ class FoodSeeder extends Seeder
         $food->type = "meat";
         $food->quantity = 100;
         $food->img_path= "storage/images/meat/01_11หมูชาบู.jpg";
-        $food->created_at = "2022-11-04 14:21:36";
-        $food->updated_at= "2022-11-04 14:21:36";
+//        $food->created_at = "2022-11-04 14:21:36";
+//        $food->updated_at= "2022-11-04 14:21:36";
         $food->save();
 
         $food = new Food();
@@ -39,8 +39,8 @@ class FoodSeeder extends Seeder
         $food->type = "meat";
         $food->quantity = 100;
         $food->img_path= "storage/images/meat/01_12เนื้อวัว.jpg";
-        $food->created_at = "2022-11-04 14:21:38";
-        $food->updated_at= "2022-11-04 14:21:38";
+//        $food->created_at = "2022-11-04 14:21:38";
+//        $food->updated_at= "2022-11-04 14:21:38";
         $food->save();
 
         $food = new Food();
@@ -48,8 +48,8 @@ class FoodSeeder extends Seeder
         $food->type = "meat";
         $food->quantity = 100;
         $food->img_path= "storage/images/meat/01_13เนื้อไก่.jpg";
-        $food->created_at = "2022-11-04 14:21:38";
-        $food->updated_at= "2022-11-04 14:21:38";
+//        $food->created_at = "2022-11-04 14:21:38";
+//        $food->updated_at= "2022-11-04 14:21:38";
         $food->save();
 
         $food = new Food();
@@ -57,8 +57,8 @@ class FoodSeeder extends Seeder
         $food->type = "meat";
         $food->quantity = 100;
         $food->img_path= "storage/images/meat/01_14หมึกกรอบ.jpg";
-        $food->created_at = "2022-11-04 14:21:38";
-        $food->updated_at= "2022-11-04 14:21:38";
+//        $food->created_at = "2022-11-04 14:21:38";
+//        $food->updated_at= "2022-11-04 14:21:38";
         $food->save();
 
         $food = new Food();
@@ -66,8 +66,8 @@ class FoodSeeder extends Seeder
         $food->type = "meat";
         $food->quantity = 100;
         $food->img_path= "storage/images/meat/01_15แมงกะพรุน.jpg";
-        $food->created_at = "2022-11-04 14:21:38";
-        $food->updated_at= "2022-11-04 14:21:38";
+//        $food->created_at = "2022-11-04 14:21:38";
+//        $food->updated_at= "2022-11-04 14:21:38";
         $food->save();
 
         $food = new Food();
@@ -75,8 +75,8 @@ class FoodSeeder extends Seeder
         $food->type = "meat";
         $food->quantity = 100;
         $food->img_path= "storage/images/meat/01_16ลูกชิ้นกุ้ง.jpg";
-        $food->created_at = "2022-11-04 14:21:38";
-        $food->updated_at= "2022-11-04 14:21:38";
+//        $food->created_at = "2022-11-04 14:21:38";
+//        $food->updated_at= "2022-11-04 14:21:38";
         $food->save();
 
         $food = new Food();
@@ -84,8 +84,8 @@ class FoodSeeder extends Seeder
         $food->type = "meat";
         $food->quantity = 100;
         $food->img_path= "storage/images/meat/01_17เต้าหู้ปลา.jpg";
-        $food->created_at = "2022-11-04 14:21:38";
-        $food->updated_at= "2022-11-04 14:21:38";
+//        $food->created_at = "2022-11-04 14:21:38";
+//        $food->updated_at= "2022-11-04 14:21:38";
         $food->save();
 
         $food = new Food();
@@ -93,8 +93,8 @@ class FoodSeeder extends Seeder
         $food->type = "meat";
         $food->quantity = 100;
         $food->img_path= "storage/images/meat/01_18เส้นปลา.jpg";
-        $food->created_at = "2022-11-04 14:21:39";
-        $food->updated_at= "2022-11-04 14:21:39";
+//        $food->created_at = "2022-11-04 14:21:39";
+//        $food->updated_at= "2022-11-04 14:21:39";
         $food->save();
 
         $food = new Food();
@@ -102,8 +102,8 @@ class FoodSeeder extends Seeder
         $food->type = "meat";
         $food->quantity = 100;
         $food->img_path= "storage/images/meat/01_19เกี๊ยวกุ้งชีส.jpg";
-        $food->created_at = "2022-11-04 14:21:40";
-        $food->updated_at= "2022-11-04 14:21:40";
+//        $food->created_at = "2022-11-04 14:21:40";
+//        $food->updated_at= "2022-11-04 14:21:40";
         $food->save();
 
         $food = new Food();
@@ -111,8 +111,8 @@ class FoodSeeder extends Seeder
         $food->type = "meat";
         $food->quantity = 100;
         $food->img_path= "storage/images/meat/01_1ชุดเนื้อนำเข้า-Australia-สไลซ์.jpg";
-        $food->created_at = "2022-11-04 14:21:40";
-        $food->updated_at= "2022-11-04 14:21:40";
+//        $food->created_at = "2022-11-04 14:21:40";
+//        $food->updated_at= "2022-11-04 14:21:40";
         $food->save();
 
         $food = new Food();
@@ -120,8 +120,8 @@ class FoodSeeder extends Seeder
         $food->type = "meat";
         $food->quantity = 100;
         $food->img_path= "storage/images/meat/01_21ไข่ไก่.jpg";
-        $food->created_at = "2022-11-04 14:21:40";
-        $food->updated_at= "2022-11-04 14:21:40";
+//        $food->created_at = "2022-11-04 14:21:40";
+//        $food->updated_at= "2022-11-04 14:21:40";
         $food->save();
 
         $food = new Food();
@@ -129,8 +129,8 @@ class FoodSeeder extends Seeder
         $food->type = "meat";
         $food->quantity = 100;
         $food->img_path= "storage/images/meat/01_2ชุดเนื้อนำเข้า-U.S-สไลซ์.jpg";
-        $food->created_at = "2022-11-04 14:21:40";
-        $food->updated_at= "2022-11-04 14:21:40";
+//        $food->created_at = "2022-11-04 14:21:40";
+//        $food->updated_at= "2022-11-04 14:21:40";
         $food->save();
 
         $food = new Food();
@@ -138,8 +138,8 @@ class FoodSeeder extends Seeder
         $food->type = "meat";
         $food->quantity = 100;
         $food->img_path= "storage/images/meat/01_5หอยแมลงภู่นิวซีแลนด์.jpg";
-        $food->created_at = "2022-11-04 14:21:40";
-        $food->updated_at= "2022-11-04 14:21:40";
+//        $food->created_at = "2022-11-04 14:21:40";
+//        $food->updated_at= "2022-11-04 14:21:40";
         $food->save();
 
         $food = new Food();
@@ -147,8 +147,8 @@ class FoodSeeder extends Seeder
         $food->type = "meat";
         $food->quantity = 100;
         $food->img_path= "storage/images/meat/01_6กุ้งสด.jpg";
-        $food->created_at = "2022-11-04 14:21:40";
-        $food->updated_at= "2022-11-04 14:21:40";
+//        $food->created_at = "2022-11-04 14:21:40";
+//        $food->updated_at= "2022-11-04 14:21:40";
         $food->save();
 
         $food = new Food();
@@ -156,8 +156,8 @@ class FoodSeeder extends Seeder
         $food->type = "meat";
         $food->quantity = 100;
         $food->img_path= "storage/images/meat/01_7ปลาหมึกสด.jpg";
-        $food->created_at = "2022-11-04 14:21:41";
-        $food->updated_at= "2022-11-04 14:21:41";
+//        $food->created_at = "2022-11-04 14:21:41";
+//        $food->updated_at= "2022-11-04 14:21:41";
         $food->save();
 
         $food = new Food();
@@ -165,8 +165,8 @@ class FoodSeeder extends Seeder
         $food->type = "meat";
         $food->quantity = 100;
         $food->img_path= "storage/images/meat/01_8เนื้อปลาสด.jpg";
-        $food->created_at = "2022-11-04 14:21:41";
-        $food->updated_at= "2022-11-04 14:21:41";
+//        $food->created_at = "2022-11-04 14:21:41";
+//        $food->updated_at= "2022-11-04 14:21:41";
         $food->save();
 
         $food = new Food();
@@ -174,8 +174,8 @@ class FoodSeeder extends Seeder
         $food->type = "vegetable";
         $food->quantity = 100;
         $food->img_path= "storage/images/vegetable/02_20วุ้นเส้น.jpg";
-        $food->created_at = "2022-11-04 14:21:41";
-        $food->updated_at= "2022-11-04 14:21:41";
+//        $food->created_at = "2022-11-04 14:21:41";
+//        $food->updated_at= "2022-11-04 14:21:41";
         $food->save();
 
         $food = new Food();
@@ -183,8 +183,8 @@ class FoodSeeder extends Seeder
         $food->type = "vegetable";
         $food->quantity = 100;
         $food->img_path= "storage/images/vegetable/02_10เห็ดฟาง.jpg";
-        $food->created_at = "2022-11-04 14:21:41";
-        $food->updated_at= "2022-11-04 14:21:41";
+//        $food->created_at = "2022-11-04 14:21:41";
+//        $food->updated_at= "2022-11-04 14:21:41";
         $food->save();
 
         $food = new Food();
@@ -192,8 +192,8 @@ class FoodSeeder extends Seeder
         $food->type = "vegetable";
         $food->quantity = 100;
         $food->img_path= "storage/images/vegetable/02_1ข้าวโพด.jpg";
-        $food->created_at = "2022-11-04 14:21:41";
-        $food->updated_at= "2022-11-04 14:21:41";
+//        $food->created_at = "2022-11-04 14:21:41";
+//        $food->updated_at= "2022-11-04 14:21:41";
         $food->save();
 
         $food = new Food();
@@ -201,8 +201,8 @@ class FoodSeeder extends Seeder
         $food->type = "vegetable";
         $food->quantity = 100;
         $food->img_path= "storage/images/vegetable/02_2ฟักทองญี่ปุ่น.jpg";
-        $food->created_at = "2022-11-04 14:21:41";
-        $food->updated_at= "2022-11-04 14:21:41";
+//        $food->created_at = "2022-11-04 14:21:41";
+//        $food->updated_at= "2022-11-04 14:21:41";
         $food->save();
 
         $food = new Food();
@@ -210,8 +210,8 @@ class FoodSeeder extends Seeder
         $food->type = "vegetable";
         $food->quantity = 100;
         $food->img_path= "storage/images/vegetable/02_3วากาเมะเขียว.jpg";
-        $food->created_at = "2022-11-04 14:21:41";
-        $food->updated_at= "2022-11-04 14:21:41";
+//        $food->created_at = "2022-11-04 14:21:41";
+//        $food->updated_at= "2022-11-04 14:21:41";
         $food->save();
 
         $food = new Food();
@@ -219,8 +219,8 @@ class FoodSeeder extends Seeder
         $food->type = "vegetable";
         $food->quantity = 100;
         $food->img_path= "storage/images/vegetable/02_4ผักกาดขาว.jpg";
-        $food->created_at = "2022-11-04 14:21:41";
-        $food->updated_at= "2022-11-04 14:21:41";
+//        $food->created_at = "2022-11-04 14:21:41";
+//        $food->updated_at= "2022-11-04 14:21:41";
         $food->save();
 
         $food = new Food();
@@ -228,8 +228,8 @@ class FoodSeeder extends Seeder
         $food->type = "vegetable";
         $food->quantity = 100;
         $food->img_path= "storage/images/vegetable/02_6กวางตุ้ง.jpg";
-        $food->created_at = "2022-11-04 14:21:42";
-        $food->updated_at= "2022-11-04 14:21:42";
+//        $food->created_at = "2022-11-04 14:21:42";
+//        $food->updated_at= "2022-11-04 14:21:42";
         $food->save();
 
         $food = new Food();
@@ -237,8 +237,8 @@ class FoodSeeder extends Seeder
         $food->type = "vegetable";
         $food->quantity = 100;
         $food->img_path= "storage/images/vegetable/02_8ผักบุ้ง.jpg";
-        $food->created_at = "2022-11-04 14:21:43";
-        $food->updated_at= "2022-11-04 14:21:43";
+//        $food->created_at = "2022-11-04 14:21:43";
+//        $food->updated_at= "2022-11-04 14:21:43";
         $food->save();
 
         $food = new Food();
@@ -246,8 +246,8 @@ class FoodSeeder extends Seeder
         $food->type = "appetizer";
         $food->quantity = 100;
         $food->img_path= "storage/images/appetizer/03_1ชุดขนมจีบ.jpg";
-        $food->created_at = "2022-11-04 14:21:43";
-        $food->updated_at= "2022-11-04 14:21:43";
+//        $food->created_at = "2022-11-04 14:21:43";
+//        $food->updated_at= "2022-11-04 14:21:43";
         $food->save();
 
         $food = new Food();
@@ -255,8 +255,8 @@ class FoodSeeder extends Seeder
         $food->type = "appetizer";
         $food->quantity = 100;
         $food->img_path= "storage/images/appetizer/03_2ชุดซาลาเปา.jpg";
-        $food->created_at = "2022-11-04 14:21:43";
-        $food->updated_at= "2022-11-04 14:21:43";
+//        $food->created_at = "2022-11-04 14:21:43";
+//        $food->updated_at= "2022-11-04 14:21:43";
         $food->save();
 
         $food = new Food();
@@ -264,8 +264,8 @@ class FoodSeeder extends Seeder
         $food->type = "appetizer";
         $food->quantity = 100;
         $food->img_path= "storage/images/appetizer/03_5ปอเปี๊ยะทอด.jpg";
-        $food->created_at = "2022-11-04 14:21:43";
-        $food->updated_at= "2022-11-04 14:21:43";
+//        $food->created_at = "2022-11-04 14:21:43";
+//        $food->updated_at= "2022-11-04 14:21:43";
         $food->save();
     }
 }

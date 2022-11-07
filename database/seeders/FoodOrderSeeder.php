@@ -16,174 +16,172 @@ class FoodOrderSeeder extends Seeder
     public function run()
     {
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 1;
         $foodOrder->order_id = 1;
         $foodOrder->food_id = 1;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:34";
-        $foodOrder->updated_at = "2022-11-06 17:36:34";
+//        $foodOrder->created_at = "2022-11-06 17:36:34";
+//        $foodOrder->updated_at = "2022-11-06 17:36:34";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 2;
         $foodOrder->order_id = 1;
         $foodOrder->food_id = 2;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:34";
-        $foodOrder->updated_at = "2022-11-06 17:36:34";
+//        $foodOrder->created_at = "2022-11-06 17:36:34";
+//        $foodOrder->updated_at = "2022-11-06 17:36:34";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 3;
+//        $foodOrder->id = 3;
         $foodOrder->order_id = 1;
         $foodOrder->food_id = 3;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:34";
-        $foodOrder->updated_at = "2022-11-06 17:36:34";
+//        $foodOrder->created_at = "2022-11-06 17:36:34";
+//        $foodOrder->updated_at = "2022-11-06 17:36:34";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 4;
+//        $foodOrder->id = 4;
         $foodOrder->order_id = 1;
         $foodOrder->food_id = 4;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:34";
-        $foodOrder->updated_at = "2022-11-06 17:36:34";
+//        $foodOrder->created_at = "2022-11-06 17:36:34";
+//        $foodOrder->updated_at = "2022-11-06 17:36:34";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 5;
+//        $foodOrder->id = 5;
         $foodOrder->order_id = 1;
         $foodOrder->food_id = 5;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:34";
-        $foodOrder->updated_at = "2022-11-06 17:36:34";
+//        $foodOrder->created_at = "2022-11-06 17:36:34";
+//        $foodOrder->updated_at = "2022-11-06 17:36:34";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 6;
+//        $foodOrder->id = 6;
         $foodOrder->order_id = 2;
         $foodOrder->food_id = 6;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:34";
-        $foodOrder->updated_at = "2022-11-06 17:36:34";
+//        $foodOrder->created_at = "2022-11-06 17:36:34";
+//        $foodOrder->updated_at = "2022-11-06 17:36:34";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 7;
+//        $foodOrder->id = 7;
         $foodOrder->order_id = 2;
         $foodOrder->food_id = 7;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:34";
-        $foodOrder->updated_at = "2022-11-06 17:36:34";
+//        $foodOrder->created_at = "2022-11-06 17:36:34";
+//        $foodOrder->updated_at = "2022-11-06 17:36:34";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 8;
+//        $foodOrder->id = 8;
         $foodOrder->order_id = 2;
         $foodOrder->food_id = 8;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:34";
-        $foodOrder->updated_at = "2022-11-06 17:36:34";
+//        $foodOrder->created_at = "2022-11-06 17:36:34";
+//        $foodOrder->updated_at = "2022-11-06 17:36:34";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 9;
+//        $foodOrder->id = 9;
         $foodOrder->order_id = 2;
         $foodOrder->food_id = 9;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:34";
-        $foodOrder->updated_at = "2022-11-06 17:36:34";
+//        $foodOrder->created_at = "2022-11-06 17:36:34";
+//        $foodOrder->updated_at = "2022-11-06 17:36:34";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 10;
+//        $foodOrder->id = 10;
         $foodOrder->order_id = 2;
         $foodOrder->food_id = 10;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:34";
-        $foodOrder->updated_at = "2022-11-06 17:36:34";
+//        $foodOrder->created_at = "2022-11-06 17:36:34";
+//        $foodOrder->updated_at = "2022-11-06 17:36:34";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 11;
+//        $foodOrder->id = 11;
         $foodOrder->order_id = 3;
         $foodOrder->food_id = 11;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:35";
-        $foodOrder->updated_at = "2022-11-06 17:36:35";
+//        $foodOrder->created_at = "2022-11-06 17:36:35";
+//        $foodOrder->updated_at = "2022-11-06 17:36:35";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 12;
+//        $foodOrder->id = 12;
         $foodOrder->order_id = 3;
         $foodOrder->food_id = 12;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:35";
-        $foodOrder->updated_at = "2022-11-06 17:36:35";
+//        $foodOrder->created_at = "2022-11-06 17:36:35";
+//        $foodOrder->updated_at = "2022-11-06 17:36:35";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 13;
+//        $foodOrder->id = 13;
         $foodOrder->order_id = 3;
         $foodOrder->food_id = 13;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:35";
-        $foodOrder->updated_at = "2022-11-06 17:36:35";
+//        $foodOrder->created_at = "2022-11-06 17:36:35";
+//        $foodOrder->updated_at = "2022-11-06 17:36:35";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 14;
+//        $foodOrder->id = 14;
         $foodOrder->order_id = 3;
         $foodOrder->food_id = 14;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:35";
-        $foodOrder->updated_at = "2022-11-06 17:36:35";
+//        $foodOrder->created_at = "2022-11-06 17:36:35";
+//        $foodOrder->updated_at = "2022-11-06 17:36:35";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 15;
+//        $foodOrder->id = 15;
         $foodOrder->order_id = 3;
         $foodOrder->food_id = 15;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:35";
-        $foodOrder->updated_at = "2022-11-06 17:36:35";
+//        $foodOrder->created_at = "2022-11-06 17:36:35";
+//        $foodOrder->updated_at = "2022-11-06 17:36:35";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 16;
+//        $foodOrder->id = 16;
         $foodOrder->order_id = 4;
         $foodOrder->food_id = 16;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:36";
-        $foodOrder->updated_at = "2022-11-06 17:36:36";
+//        $foodOrder->created_at = "2022-11-06 17:36:36";
+//        $foodOrder->updated_at = "2022-11-06 17:36:36";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 17;
+//        $foodOrder->id = 17;
         $foodOrder->order_id = 4;
         $foodOrder->food_id = 17;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:36";
-        $foodOrder->updated_at = "2022-11-06 17:36:36";
+//        $foodOrder->created_at = "2022-11-06 17:36:36";
+//        $foodOrder->updated_at = "2022-11-06 17:36:36";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 18;
+//        $foodOrder->id = 18;
         $foodOrder->order_id = 4;
         $foodOrder->food_id = 18;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:36";
-        $foodOrder->updated_at = "2022-11-06 17:36:36";
+//        $foodOrder->created_at = "2022-11-06 17:36:36";
+//        $foodOrder->updated_at = "2022-11-06 17:36:36";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
-        $foodOrder->id = 19;
+//        $foodOrder->id = 19;
         $foodOrder->order_id = 4;
         $foodOrder->food_id = 19;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:36";
-        $foodOrder->updated_at = "2022-11-06 17:36:36";
+//        $foodOrder->created_at = "2022-11-06 17:36:36";
+//        $foodOrder->updated_at = "2022-11-06 17:36:36";
         $foodOrder->save();
 
         $foodOrder = new FoodOrder();
@@ -191,8 +189,8 @@ class FoodOrderSeeder extends Seeder
         $foodOrder->order_id = 4;
         $foodOrder->food_id = 20;
         $foodOrder->quantity = 5;
-        $foodOrder->created_at = "2022-11-06 17:36:36";
-        $foodOrder->updated_at = "2022-11-06 17:36:36";
+//        $foodOrder->created_at = "2022-11-06 17:36:36";
+//        $foodOrder->updated_at = "2022-11-06 17:36:36";
         $foodOrder->save();
     }
 }
