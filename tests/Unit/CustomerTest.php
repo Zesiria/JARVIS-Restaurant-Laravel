@@ -27,14 +27,7 @@ class CustomerTest extends TestCase
         $customer->setNumberPeople(6);
         $this->assertEquals(6, $customer->getNumberPeople());
     }
-
-    public function testSetNumberPeopleNegative()
-    {
-        $customer = new Customer();
-        $customer->setNumberPeople(-1);
-        $this->assertEquals(-1, $customer->getNumberPeople());
-    }
-
+    
     public function testSetCode()
     {
         $customer = new Customer();

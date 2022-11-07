@@ -74,34 +74,6 @@ class OrderAPITest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_post_order_from_api()
-    {
-        $this->post('/api/foods', [
-            "name" => 'Shabu',
-            "type" => 'meat',
-            "quantity" => 10,
-            "img_path" => '1.jpg'
-        ]);
-
-        $this->post('/api/tables', [
-            "size" => 2
-        ]);
-
-        $this->put('/api/tables/1', [
-            "property" => "check-in",
-            "number_people" => 2
-        ]);
-
-        $response = $this->postJson('/api/orders', [
-            "customer_id" => 1,
-            "foodOrders" => [
-                "food_id" => 1,
-                "quantity" => 1
-            ]
-        ]);
-
-        $response->assertStatus(201);
-    }
 
     public function test_put_order_to_api()
     {
